@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation de Services</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ff9500;
+            color: white;
+            padding: 10px;
+            text-align: right;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s ease; 
+        }
+
+        header a:hover {
+            color: black;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f0f0f0; 
+        }
+        .form-group .date-input { 
+            width: 98%; 
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9500;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#">Accueil</a>
+        <a href="#">À propos</a>
+        <a href="#">Contact</a>
+        <a href="#">Rechercher</a>
+        <a href="#">Offres</a>
+        <a href="#">Connexion</a>
+        <a href="#">Inscription</a>
+    </header>
+    <div class="container">
+        <h2>Réservation de Service</h2>
+        <form id="reservationForm">
+            <div class="form-group">
+                <label for="serviceCategory">Catégorie de Service</label>
+                <select id="serviceCategory" name="serviceCategory" required>
+                    <option value="">Sélectionner une catégorie</option>
+                    <option value="travaux">Travaux</option>
+                    <option value="entretien">Entretien</option>
+                    <option value="animaux">Animaux</option>
+                    <option value="bricolage">Bricolage</option>
+                    <option value="automobile">Automobile</option>
+                    <option value="services_informatiques">Services Informatiques</option>
+                    <option value="cours_particuliers">Cours Particuliers</option>
+                    <option value="aide_a_domicile">Aide à domicile</option>
+                    <option value="assistance_administrative">Assistance Administrative</option>
+                    <option value="coaching_conseils">Coaching et Conseils</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subCategory">Sous-Catégorie de Service</label>
+                <select id="subCategory" name="subCategory" required>
+                    <option value="">Sélectionner une sous-catégorie</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date souhaitée</label>
+                <input type="date" id="date" name="date" class="date-input" required>
+            </div>
+            <div class="form-group">
+                <label for="timeSlot">Créneau Horaire</label>
+                <select id="timeSlot" name="timeSlot" required>
+                    <option value="">Sélectionner un créneau</option>
+                    <option value="morning">Matin (8h-10h)</option>
+                    <option value="morning">Matin (10h-12h)</option>
+                    <option value="afternoon">Après-midi (12h-14h)</option>
+                    <option value="afternoon">Après-midi (14h-16h)</option>
+                    <option value="afternoon">Après-midi (16h-18h)</option>
+                    <option value="evening">Soirée (18h-20h)</option>
+                    <option value="evening">Soirée (20h-22h)</option>
+                </select>
+            </div>
+            <button type="submit">Réserver</button>
+        </form>
+    </div>
+    <footer>@SkillSolidarity 2024 Copyright</footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const services = {
+                travaux: ["Peinture", "Maçonnerie", "Plomberie", "Électricité"],
+                entretien: ["Jardin", "Voiture", "Habitat", "Repassage", "Tâches ménagères"],
+                animaux: ["Garde d'animaux", "Promenade d'animaux", "Toilettage"],
+                bricolage: ["Montage de meuble", "Couture", "Cordonnerie"],
+                automobile: ["Vidange", "Nettoyage", "Changement de Pièces", "Autres"],
+                services_informatiques: ["Montage", "Dépannage informatique", "Musique", "Autres"],
+                cours_particuliers: ["Musique", "Langues", "Matières Scientifiques", "Autres"],
+                aide_a_domicile: ["Baby Sitter", "Assistance aux personnes dépendantes"],
+                assistance_administrative: ["Aide pour les démarches administratives", "Rédaction et correction (CV, lettres de motivation)", "Gestion budgétaire personnelle", "Conseils juridiques de base"],
+                coaching_conseils: ["Cuisine", "Sport", "Décoration", "Jeux", "Autre"]
+            };
+
+            const serviceSelect = document.getElementById('serviceCategory');
+            const subCategorySelect = document.getElementById('subCategory');
+
+            serviceSelect.addEventListener('change', function() {
+                const selectedService = this.value;
+                const subCategories = services[selectedService];
+
+                subCategorySelect.innerHTML = '<option value="">Sélectionner une sous-catégorie</option>';
+                subCategories.forEach(function(subCategory) {
+                    const option = document.createElement('option');
+                    option.value = subCategory;
+                    option.textContent = subCategory;
+                    subCategorySelect.appendChild(option);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
