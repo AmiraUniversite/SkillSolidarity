@@ -1,0 +1,5 @@
+Tuto Video : https://www.youtube.com/watch?v=pPmLkNLTMTQ
+
+Téléchargement de Xamp: https://www.apachefriends.org/fr/download.html
+
+Le code SQL est dans le dossier SQL
