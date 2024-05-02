@@ -1,10 +1,10 @@
--- Table creation for Service
+
 CREATE TABLE IF NOT EXISTS public."Service"
 (
     IDService VARCHAR(50) PRIMARY KEY,
     NomService VARCHAR(50) NOT NULL check (NomService ~ '^[A-Za-z]+$'),
     Description_optionnel VARCHAR(150),
-    Categorie VARCHAR(50) NOT NULL check (upper (Categorie)='Jardinage'  or upper (Categorie)='Bricolage' or upper (Categorie)='Livraison' or upper (Categorie)='Déménagement'),
+    Categorie VARCHAR(50) NOT NULL check (upper (Categorie)='Travaux'  or upper (Categorie)='Entretien' or upper (Categorie)='Animaux' or upper (Categorie)='Bricolage' or upper (Categorie)='Automobile' or upper (Categorie)='Services informatiques' or upper (Categorie)='Cours Particuliers/Éducation' or upper (Categorie)='Aide à domocile' or upper (Categorie)='Assistance administrative' or upper (Categorie)='Coaching/Conseils'),
     CategorieSecondaire VARCHAR(50),
     DateService DATE NOT NULL,
     DependenceMeteo BOOLEAN NOT NULL,
@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS public."Service"
     CompetenceRequise VARCHAR(50) NOT NULL
 );
 
--- Table creation for Utilisateur
 CREATE TABLE IF NOT EXISTS public."Utilisateur"
 (
     IDUtilisateur VARCHAR(50) PRIMARY KEY,
@@ -29,7 +28,6 @@ CREATE TABLE IF NOT EXISTS public."Utilisateur"
     RoleU VARCHAR(50) NOT NULL
 );
 
--- Table creation for Avis
 CREATE TABLE IF NOT EXISTS public."Avis"
 (
     IDAvis VARCHAR(50) PRIMARY KEY,
@@ -40,7 +38,6 @@ CREATE TABLE IF NOT EXISTS public."Avis"
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
 
--- Table creation for Competence
 CREATE TABLE IF NOT EXISTS public."Competence"
 (
     IDCompetence VARCHAR(50) PRIMARY KEY,
@@ -48,7 +45,6 @@ CREATE TABLE IF NOT EXISTS public."Competence"
     Niveau VARCHAR(50) CHECK (Niveau IN ('Debutant', 'Intermediaire', 'Expert'))
 );
 
--- Table for Offrir relationship
 CREATE TABLE IF NOT EXISTS public."Offrir"
 (
     IDService VARCHAR(50),
@@ -59,7 +55,6 @@ CREATE TABLE IF NOT EXISTS public."Offrir"
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
 
--- Table for Planifier relationship
 CREATE TABLE IF NOT EXISTS public."Planifier"
 (
     IDService VARCHAR(50),
@@ -70,7 +65,6 @@ CREATE TABLE IF NOT EXISTS public."Planifier"
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
 
--- Table for Posséder relationship
 CREATE TABLE IF NOT EXISTS public."Posseder"
 (
     IDUtilisateur VARCHAR(50),
@@ -80,7 +74,6 @@ CREATE TABLE IF NOT EXISTS public."Posseder"
     FOREIGN KEY (IDCompetence) REFERENCES public."Competence" (IDCompetence)
 );
 
--- Table for Demander relationship
 CREATE TABLE IF NOT EXISTS public."Demander"
 (
     IDService VARCHAR(50),
@@ -91,7 +84,6 @@ CREATE TABLE IF NOT EXISTS public."Demander"
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
 
--- Table for Evaluer relationship
 CREATE TABLE IF NOT EXISTS public."Evaluer"
 (
     IDService VARCHAR(50),
@@ -102,7 +94,6 @@ CREATE TABLE IF NOT EXISTS public."Evaluer"
     FOREIGN KEY (IDAvis) REFERENCES public."Avis" (IDAvis)
 );
 
--- Table for Recevoir relationship
 CREATE TABLE IF NOT EXISTS public."Recevoir"
 (
     IDUtilisateur VARCHAR(50),
@@ -112,7 +103,6 @@ CREATE TABLE IF NOT EXISTS public."Recevoir"
     FOREIGN KEY (IDAvis) REFERENCES public."Avis" (IDAvis)
 );
 
--- Table for Donner relationship
 CREATE TABLE IF NOT EXISTS public."Donner"
 (
     IDUtilisateur VARCHAR(50),
@@ -122,7 +112,6 @@ CREATE TABLE IF NOT EXISTS public."Donner"
     FOREIGN KEY (IDAvis) REFERENCES public."Avis" (IDAvis)
 );
 
--- Table for Nécessiter relationship
 CREATE TABLE IF NOT EXISTS public."Nécessiter"
 (
     IDService VARCHAR(50),
