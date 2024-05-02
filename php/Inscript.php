@@ -9,7 +9,7 @@
           echo "Veuillez remplir tous les champs.";
       } else {
           // Vérification des caractères spéciaux dans le mot de passe
-          if (!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) {
+          if (!preg_match('/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]+$/', $password)) {
               // Connexion à la base de données
               $connexion = pg_connect("host=localhost dbname=SkillSolidarityAymane user=postgres password=mfp98x");
               if (!$connexion) {
