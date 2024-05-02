@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public."Service"
+CREATE TABLE IF NOT EXISTS public."Service" --PB
 (
     IDService VARCHAR(50) PRIMARY KEY,
     NomService VARCHAR(50) NOT NULL check (NomService ~ '^[A-Za-z]+$'),
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS public."Service"
     CompetenceRequise VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS public."Utilisateur"
+CREATE TABLE IF NOT EXISTS public."Utilisateur" --PB
 (
     IDUtilisateur VARCHAR(50) PRIMARY KEY,
     NomU VARCHAR(50) NOT NULL check (NomU ~ '^[A-Za-z]+$'),
@@ -24,10 +24,10 @@ CREATE TABLE IF NOT EXISTS public."Utilisateur"
     DateInscriptionU DATE NOT NULL,
     NoteU INT NOT NULL CHECK (NoteU BETWEEN 0 AND 5),
     CreditU INT NOT NULL,
-    RoleU VARCHAR(50) NOT NULL
+    RoleU VARCHAR(50) NOT NULL  --PB
 );
 
-CREATE TABLE IF NOT EXISTS public."Avis"
+CREATE TABLE IF NOT EXISTS public."Avis" --PB
 (
     IDAvis VARCHAR(50) PRIMARY KEY,
     Note INT NOT NULL CHECK (Note BETWEEN 1 AND 5),
@@ -37,14 +37,14 @@ CREATE TABLE IF NOT EXISTS public."Avis"
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
 
-CREATE TABLE IF NOT EXISTS public."Competence"
+CREATE TABLE IF NOT EXISTS public."Competence" --PB
 (
     IDCompetence VARCHAR(50) PRIMARY KEY,
     NomCompetence VARCHAR(50) NOT NULL,
     Niveau VARCHAR(50) CHECK (Niveau IN ('Debutant', 'Intermediaire', 'Expert'))
 );
 
-CREATE TABLE IF NOT EXISTS public."Offrir"
+CREATE TABLE IF NOT EXISTS public."Offrir" --PB
 (
     IDService VARCHAR(50),
     IDUtilisateur VARCHAR(50),
