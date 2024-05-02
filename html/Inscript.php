@@ -128,7 +128,7 @@
       $email = $_POST["email"];
       $password = $_POST["password"];
 
-      // Contrôle de saisie
+      // Contrôle de saisiepg
       if (empty($username) || empty($email) || empty($password)) {
           echo "Veuillez remplir tous les champs.";
       } else {
