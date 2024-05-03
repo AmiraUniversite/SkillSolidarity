@@ -125,6 +125,9 @@
     
     <button type="submit">Créer un compte</button>
   </form>
+
+
+  
   <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $nom = $_POST["nom"];
