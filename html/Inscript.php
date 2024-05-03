@@ -110,18 +110,62 @@
   <div class="signup-header">
     <h2>Création d'un compte</h2>
   </div>
-  <form class="signup-form" method="post" action="php/Inscript.php">
-    <label for="username">Nom d'utilisateur</label>
-    <input type="text" id="username" required>
+  <form class="signup-form" method="post">
+    <label for="nom">Nom d'utilisateur</label>
+    <input name="nom" type="text" id="nom" required>
     
+    <label for="prénom">Nom d'utilisateur</label>
+    <input name="prénom" type="text" id="prénom" required>
+
     <label for="email">Adresse mail</label>
-    <input type="email" id="email" placeholder="nom@example.com" required>
+    <input name="email" type="email" id="email" placeholder="nom@example.com" required>
     
     <label for="password">Mot de passe</label>
-    <input type="password" id="password" required>
+    <input name="password" type="password" id="password" required>
     
     <button type="submit">Créer un compte</button>
   </form>
+  <?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $nom = $_POST["nom"];
+      $prénom = $_POST["prénom"];
+      $email = $_POST["email"];
+      $password = $_POST["password"];
+
+      // Contrôle de saisie
+      if (empty($nom) || empty($prénom) || empty($email) || empty($password)) {
+          echo "Veuillez remplir tous les champs.";
+      } else {
+          // Vérification des caractères spéciaux dans le mot de passe
+          if (!preg_match('/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]+$/', $password)) {
+              // Connexion à la base de données
+              $connexion = pg_connect("host=localhost dbname=SkillSolidarity_Valerian user=postgres password=mfp98x");
+              if (!$connexion) {
+                  echo "Erreur lors de la connexion à la base de données.<br>";
+                  exit;
+              }
+
+              // Préparation de la requête d'insertion
+              $id_utilisateur+=1;
+              $query = "INSERT INTO utilisateur (idutilisateur, nomu, prénomu, emailu, motdepasseu, adresse , code_postal, ville, dateinscriptionu, noteu, creditu, roleu) VALUES ('$id_utilisateur', '$nom', '$prénom', '$email', '$password')";
+
+              // Exécution de la requête
+              $result = pg_query($connexion, $query);
+
+              if ($result) {
+                  echo "Compte créé avec succès!";
+              } else {
+                  echo "Erreur lors de la création du compte.";
+              }
+
+              // Fermeture de la connexion
+              pg_close($connexion);
+          } else {
+              echo "Le mot de passe doit être composé uniquement de caractères et de chiffres.";
+          }
+      }
+  }
+?>
 </div>
 <!-- Footer -->
 <footer>@SkillSolidarity 2024 Copyright</footer>

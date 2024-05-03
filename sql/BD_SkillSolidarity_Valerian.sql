@@ -3,27 +3,27 @@ CREATE TABLE Service (
     IDService VARCHAR(50) PRIMARY KEY,
     NomService VARCHAR(50) NOT NULL,
     Description_optionnel_ VARCHAR(50),
-    Categorie VARCHAR(50),
+    Categorie VARCHAR(50) NOT NULL check (upper (Categorie)='Travaux'  or upper (Categorie)='Entretien' or upper (Categorie)='Animaux' or upper (Categorie)='Bricolage' or upper (Categorie)='Automobile' or upper (Categorie)='Services informatiques' or upper (Categorie)='Cours Particuliers/Éducation' or upper (Categorie)='Aide à domocile' or upper (Categorie)='Assistance administrative' or upper (Categorie)='Coaching/Conseils'),
     CategorieSecondaire VARCHAR(50),
-    DateService TIMESTAMP,
-    DependenceMeteo BOOLEAN,
-    CreditRequis INT,
+    DateService TIMESTAMP NOT NULL,
+    DependenceMeteo BOOLEAN NOT NULL,
+    CreditRequis INT NOT NULL,
     CompétenceRequise VARCHAR(50) NOT NULL
 );
 
 -- Table Utilisateur
 CREATE TABLE Utilisateur (
     IDUtilisateur VARCHAR(50) PRIMARY KEY,
-    NomU VARCHAR(50) NOT NULL,
-    PrénomU VARCHAR(50),
-    EmailU VARCHAR(50),
-    MotDePasseU VARCHAR(50),
-    Adresse VARCHAR(50),
-    Code_Postal DECIMAL(9,2),
-    Ville VARCHAR(50),
+    NomU VARCHAR(50) NOT NULL check (NomU ~ '^[A-Za-z]+$'),
+    PrénomU VARCHAR(50) NOT NULL check (PrénomU ~ '^[A-Za-z]+$'),
+    EmailU VARCHAR(50) NOT NULL UNIQUE check (EmailU SIMILAR TO '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}'),
+    MotDePasseU VARCHAR(50) NOT NULL check (MotDePasseU ~ '[a-zA-Z0-9]+'),
+    Adresse VARCHAR(50) NOT NULL,
+    Code_Postal DECIMAL(9,2) NOT NULL,
+    Ville VARCHAR(50) NOT NULL,
     DateInscriptionU TIMESTAMP NOT NULL,
-    NoteU INT,
-    CreditU INT,
+    NoteU INT NOT NULL,
+    CreditU INT NOT NULL,
     RoleU BOOLEAN NOT NULL
 );
 
