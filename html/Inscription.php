@@ -8,7 +8,7 @@
   body, html {
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Utilisation de min-height pour couvrir au moins toute la hauteur de la fenêtre */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     font-family: 'Arial', sans-serif;
@@ -23,10 +23,10 @@
   }
 
   .main-content {
-    flex: 1; /* Permet au contenu de s'étendre pour remplir l'espace restant */
+    flex: 1;
     display: flex;
-    justify-content: center; /* Centre le contenu horizontalement */
-    align-items: center; /* Centre le contenu verticalement */
+    justify-content: center; 
+    align-items: center; 
   }
 
   .signup-container {
@@ -79,24 +79,21 @@
   .signup-image {
     max-width: 600px;
     height: auto;
-    margin-left: auto; /* Alignement à droite */
-    margin-right: 50px; /* Espace entre le formulaire et l'image */
-    margin-top: 40px; /* Alignement en bas */
-    margin-bottom: 40px; /* Espace en bas */
+    margin-left: auto; 
+    margin-right: 50px; 
+    margin-top: ; 
+    margin-bottom: 40px; 
   }
 </style>
 </head>
 <body>
 
-<!-- Header placé tout en haut de la page -->
 <?php include 'Header_accueil.html'; ?>
 
-<!-- Contenu principal -->
 <div class="main-content">
   <div class="signup-container">
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if ($_POST['step'] == '1') {
+      if ($_POST['step'] == '1') {
     ?>
           <h1 class="signup-title">Entrez vos informations</h1>
           <form class="signup-form" method="post">
@@ -138,8 +135,7 @@
     <?php
         } elseif ($_POST['step'] == '3') {
             echo "<h1 class='signup-title'>Inscription terminée !</h1>";
-        }
-    } else {
+        } else {
     ?>
         <h1 class="signup-title">Inscription</h1>
         <form class="signup-form" method="post">
@@ -166,11 +162,10 @@
     ?>
   </div>
 
-  <!-- Ajout de l'image à droite de la page -->
   <img class="signup-image" src="capture.jpg" alt="Description de l'image">
 </div>
 
-<!-- Footer -->
+
 <?php include 'footer.html'; ?>
 
 </body>
