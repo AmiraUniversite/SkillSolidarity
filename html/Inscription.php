@@ -81,7 +81,7 @@
     height: auto;
     margin-left: auto; 
     margin-right: 50px; 
-    margin-top: ; 
+    margin-top: 0px; 
     margin-bottom: 40px; 
   }
 </style>
