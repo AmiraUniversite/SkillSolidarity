@@ -162,7 +162,7 @@
     ?>
   </div>
 
-  <img class="signup-image" src="capture.jpg" alt="Description de l'image">
+  <img class="signup-image" src="images/logo.jpg" alt="Description de l'image">
 </div>
 
 
