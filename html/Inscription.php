@@ -88,7 +88,13 @@
 </head>
 <body>
 
+<?php include 'Header_accueil.html'; ?>
 
+<div class="main-content">
+  <div class="signup-container">
+    <?php
+      if ($_POST['step'] == '1') {
+    ?>
           <h1 class="signup-title">Entrez vos informations</h1>
           <form class="signup-form" method="post">
             <input type="hidden" name="step" value="2">
@@ -109,7 +115,9 @@
             
             <button type="submit">Suivant</button>
           </form>
-    
+    <?php
+        } elseif ($_POST['step'] == '2') {
+    ?>
           <h1 class="signup-title">Finalisez votre inscription</h1>
           <form class="signup-form" method="post">
             <input type="hidden" name="step" value="3">
@@ -124,7 +132,11 @@
             
             <button type="submit">Créer un compte</button>
           </form>
-   
+    <?php
+        } elseif ($_POST['step'] == '3') {
+            echo "<h1 class='signup-title'>Inscription terminée !</h1>";
+        } else {
+    ?>
         <h1 class="signup-title">Inscription</h1>
         <form class="signup-form" method="post">
           <input type="hidden" name="step" value="1">
@@ -145,13 +157,16 @@
           
           <button type="submit">Suivant</button>
         </form>
-   
+    <?php
+    }
+    ?>
   </div>
 
   <img class="signup-image" src="capture.jpg" alt="Description de l'image">
 </div>
 
 
+<?php include 'footer.html'; ?>
 
 </body>
 </html>
