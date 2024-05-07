@@ -77,11 +77,11 @@
   }
 
   .signup-image {
-    max-width: 600px;
+    
     height: auto;
     margin-left: auto; 
     margin-right: 50px; 
-    margin-top: ; 
+    margin-top: 0px; 
     margin-bottom: 40px; 
   }
 </style>
@@ -162,7 +162,7 @@
     ?>
   </div>
 
-  <img class="signup-image" src="images/logo.jpg" alt="Description de l'image">
+  <img class="signup-image" src="images/inscription.jpg" alt="Description de l'image">
 </div>
 
 
