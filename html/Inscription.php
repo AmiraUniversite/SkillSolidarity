@@ -25,8 +25,10 @@
   .main-content {
     flex: 1;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: flex-start; /* Align left */
+    align-items: flex-start; /* Adjust to top */
+    padding-left: 20px; /* Add padding to align with form */
+    padding-top: 50px; /* Add padding to move the form up */
   }
 
   .signup-container {
@@ -75,98 +77,56 @@
   .signup-form button:hover {
     background-color: #f2994a;
   }
-
-  .signup-image {
-    
-    height: auto;
-    margin-left: auto; 
-    margin-right: 50px; 
-    margin-top: 0px; 
-    margin-bottom: 40px; 
+  
+  footer {
+    margin-top: 50px; /* Ajout de la marge supérieure */
+  }
+  
+  .image-right {
+    margin-left: auto; /* Aligner à droite */
   }
 </style>
 </head>
 <body>
-
 <?php include 'Header_accueil.html'; ?>
-
 <div class="main-content">
-  <div class="signup-container">
-    <?php
-      if ($_POST['step'] == '1') {
-    ?>
-          <h1 class="signup-title">Entrez vos informations</h1>
-          <form class="signup-form" method="post">
-            <input type="hidden" name="step" value="2">
-            <label for="nom" style="display: none;">Nom :</label>
-            <input name="nom" type="text" id="nom" placeholder="Entrez votre nom" required>
-            
-            <label for="prénom" style="display: none;">Prénom :</label>
-            <input name="prénom" type="text" id="prénom" placeholder="Entrez votre prénom" required>
-
-            <label for="adresse" style="display: none;">Adresse postale :</label>
-            <input name="adresse" type="text" id="adresse" placeholder="Entrez votre adresse postale" required>
-
-            <label for="ville" style="display: none;">Ville :</label>
-            <input name="ville" type="text" id="ville" placeholder="Entrez votre ville" required>
-
-            <label for="code_postal" style="display: none;">Code postal :</label>
-            <input name="code_postal" type="text" id="code_postal" placeholder="Entrez votre code postal" required>
-            
-            <button type="submit">Suivant</button>
-          </form>
-    <?php
-        } elseif ($_POST['step'] == '2') {
-    ?>
-          <h1 class="signup-title">Finalisez votre inscription</h1>
-          <form class="signup-form" method="post">
-            <input type="hidden" name="step" value="3">
-            <label for="email" style="display: none;">Adresse mail :</label>
-            <input name="email" type="email" id="email" placeholder="Entrez votre adresse mail" required>
-            
-            <label for="password" style="display: none;">Mot de passe :</label>
-            <input name="password" type="password" id="password" placeholder="Entrez votre mot de passe" required>
-
-            <label for="confirm_password" style="display: none;">Confirmation du mot de passe :</label>
-            <input name="confirm_password" type="password" id="confirm_password" placeholder="Confirmez votre mot de passe" required>
-            
-            <button type="submit">Créer un compte</button>
-          </form>
-    <?php
-        } elseif ($_POST['step'] == '3') {
-            echo "<h1 class='signup-title'>Inscription terminée !</h1>";
-        } else {
-    ?>
-        <h1 class="signup-title">Inscription</h1>
-        <form class="signup-form" method="post">
-          <input type="hidden" name="step" value="1">
-          <label for="nom" style="display: none;">Nom :</label>
-          <input name="nom" type="text" id="nom" placeholder="Entrez votre nom" required>
-          
-          <label for="prénom" style="display: none;">Prénom :</label>
-          <input name="prénom" type="text" id="prénom" placeholder="Entrez votre prénom" required>
-
-          <label for="adresse" style="display: none;">Adresse postale :</label>
-          <input name="adresse" type="text" id="adresse" placeholder="Entrez votre adresse postale" required>
-
-          <label for="ville" style="display: none;">Ville :</label>
-          <input name="ville" type="text" id="ville" placeholder="Entrez votre ville" required>
-
-          <label for="code_postal" style="display: none;">Code postal :</label>
-          <input name="code_postal" type="text" id="code_postal" placeholder="Entrez votre code postal" required>
-          
-          <button type="submit">Suivant</button>
-        </form>
-    <?php
-    }
-    ?>
+  <div id="personal-info-section" class="signup-container">
+    <h1 class="signup-title">Entrez vos informations</h1>
+    <form class="signup-form" id="personal-info-form" onsubmit="return moveToNextPage()">
+      <input type="hidden" name="step" value="2">
+      <input name="nom" type="text" pattern="[A-Za-z]+" placeholder="Entrez votre nom" required>
+      <input name="prénom" type="text" pattern="[A-Za-z]+" placeholder="Entrez votre prénom" required>
+      <input name="adresse" type="text" placeholder="Entrez votre adresse postale" required>
+      <input name="ville" type="text" placeholder="Entrez votre ville" required>
+      <input name="code_postal" type="text" placeholder="Entrez votre code postal" required>
+      <button type="submit">Suivant</button>
+    </form> 
   </div>
 
-  <img class="signup-image" src="images/inscription.jpg" alt="Description de l'image">
+  <div id="email-section" class="signup-container" style="display: none;">
+    <h1 class="signup-title">Entrez votre email et mot de passe</h1>
+    <form class="signup-form" id="email-form">
+      <input type="hidden" name="step" value="3">
+      
+      <input name="email" type="email" placeholder="Adresse mail" required>
+      <input name="password" type="password" placeholder="Mot de passe" required>
+      <input name="confirm_password" type="password" placeholder="Confirmation du mot de passe" required>
+      
+      
+      <button id="submit-registration" type="submit">Créer un compte</button>
+    </form> 
+  </div>
+  <img class="image-right" src="inscription.jpg" alt="Image à droite">
 </div>
+<?php include 'Footer_mode_non_connecte.html'; ?>
 
-
-<?php include 'footer.html'; ?>
+<script>
+  function moveToNextPage() {
+    document.getElementById('personal-info-section').style.display = 'none';
+    document.getElementById('email-section').style.display = 'block';
+    return false; // Prevents form submission
+  }
+</script>
 
 </body>
 </html>
