@@ -84,7 +84,42 @@
             <li><a href="#" class="button">Peinture</a></li>
             <li><a href="#" class="button">Mécanique</a></li>
             <li><a href="#" class="button">Déménagement</a></li>
+            <li><a href="#" class="button">Autres</a></li>
         </ul>
+
+        <?php
+
+        // Connexion à la base de données
+        $connexion = pg_connect("host=localhost dbname=SkillSolidarity_Valerian user=postgres password=mfp98x");
+
+        // Vérifier la connexion
+        if ($conn->connect_error) {
+           die("Connection failed: " . $conn->connect_error);
+        }
+
+
+        // Exécuter la requête SQL
+        $sql = "SELECT ..., ... FROM table WHERE condition";
+        $result = $conn->query($sql);
+
+        // Vérifier s'il y a des résultats
+        if ($result->num_rows > 0) {
+            // Parcourir les résultats
+            while($row = $result->fetch_assoc()) {
+                echo "....: " . $row["..."]. " - ...: " . $row["..."]. "<br>";
+            }
+        } else {
+            echo "0 résultats";
+        }
+        ?>
+        
+
+
+
     </div>
 </body>
 </html>
+
+
+
+
