@@ -104,7 +104,7 @@
   </div>
 
   <div id="email-section" class="signup-container" style="display: none;">
-    <h1 class="signup-title">Entrez votre email et mot de passe</h1>
+    <h1 class="signup-title">Finalisez votre inscription</h1>
     <form class="signup-form" id="email-form">
       <input type="hidden" name="step" value="3">
       

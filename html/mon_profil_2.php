@@ -104,6 +104,6 @@
   <div class="reservations-title">Mes réservations</div>
   <!-- Insert dynamic content or additional layout for reservations here -->
 </div>
-<?php include 'Footer_mode_non_connecte.html'; ?>
+<?php include 'Footer_mode_connecte.html'; ?>
 </body>
 </html>
