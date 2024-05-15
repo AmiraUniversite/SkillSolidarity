@@ -47,9 +47,6 @@
             echo "0 résultats";
         }
         ?>
-        
-
-
 
     </div>
 </body>
