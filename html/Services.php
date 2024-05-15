@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>Résultat de recherche</h1>
-        <p class="filter">Filtrer par thème:</p>
+        <p class="filter">Veuillez choisir parmi les catégorie suivantes:</p>
         <ul class="options">
             <li><a href="#" class="button">Jardinage</a></li>
             <li><a href="#" class="button">Plomberie</a></li>
@@ -25,14 +25,24 @@
         <?php
 
         // Connexion à la base de données
-        $connexion = pg_connect("host=localhost dbname=SkillSolidarity_Valerian user=postgres password=mfp98x");
+        $host="localhost"; 
+        $dbname="SkillSolidarity";
+        $user="postgres";
+        $port="5432"; 
+        $password="******";
+        
+        // Connexion à la base de données
+        $connexion = pg_connect("host=$host dbname=$dbname user=$user port=$port password=$password");
 
         // Vérifier la connexion
-        if ($conn->connect_error) {
-           die("Connection failed: " . $conn->connect_error);
+        if (!$connexion) {
+            die("Echec de la connexion : " . pg_last_error());
         }
 
+        // Vérification de la bonne soumission du formulaire
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+        
         // Exécuter la requête SQL
         $sql = "SELECT ..., ... FROM table WHERE condition";
         $result = $conn->query($sql);
@@ -46,7 +56,10 @@
         } else {
             echo "0 résultats";
         }
-        ?>
+    }
+        pg_close($connexion);
+    
+    ?>
 
     </div>
 </body>

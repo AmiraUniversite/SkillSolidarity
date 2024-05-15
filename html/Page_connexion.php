@@ -24,10 +24,11 @@
 
 <?php
     $host="localhost"; 
-    $dbname="SkillSoly";
+    $dbname="SkillSolidarity";
     $user="postgres";
     $port="5432"; 
-    $password="********";
+    $password="*******";
+
     // Connexion à la base de données
     $connexion = pg_connect("host=$host dbname=$dbname user=$user port=$port password=$password");
 
@@ -38,12 +39,13 @@
 
     // Vérification de la bonne soumission du formulaire
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
         // Récupération des données trasmises par l'utilisateur
         $email = pg_escape_string($connexion, $_POST["email"]);
         $password = pg_escape_string($connexion, $_POST["password"]);
 
         // Vérification de la validité des informations grâce aux requêtes SQL
-        $requete = "SELECT * FROM Utilisateurs WHERE email = '$email' AND mot_de_passe = '$password'";
+        $requete = "SELECT * FROM  Utilisateur WHERE emailu = '$email' AND motdepasseu = '$password'";
         $resultat = pg_query($connexion, $requete);
 
         // Vérification du résultat de la requête
