@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inscription</title>
-<link rel="stylesheet" href="inscription.css">
+<link rel="stylesheet" href="css/inscription.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
       <button id="submit-registration" type="submit">Créer un compte</button>
     </form> 
   </div>
-  <img class="image-right" src="inscription.jpg" alt="Image à droite">
+  <img class="image-right" src="images/inscription.jpg" alt="Image à droite">
 </div>
 <?php include 'Footer_mode_non_connecte.html'; ?>
 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MonProfil1</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="mon_profil_2.css">
+<link rel="stylesheet" href="css/mon_profil_2.css">
 
 </head>
 <body>
