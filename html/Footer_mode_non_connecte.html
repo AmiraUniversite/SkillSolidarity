@@ -4,73 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Footer</title>
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-    
-    footer {
-        background-color: #fff;
-        padding: 60px 0;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    
-    .left img {
-        max-width: 100px; /* Ajustez la taille selon vos besoins */
-    }
-    
-    .middle ul, .middle-right ul, .right ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        cursor: pointer;
-    }
-    
-    .middle ul li, .right ul li {
-        margin-bottom: 5px;
-    }
-    
-    .btn-signup {
-        background-color: #f2994A;
-        color: #fff;
-        border: none;
-        padding: 8px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    .login {
-        font-weight: bold;
-    }
-    
-    .login { /* Styles spécifiques pour l'élément "Connexion" */
-    font-weight: bold;
-    color: black;
-    margin: 20px 20px 30px 20px; /* Marge de 10 pixels en haut, 20 pixels à droite, 30 pixels en bas et 40 pixels à gauche */
-    cursor: pointer
-    }
+<link rel="stylesheet" href="Footer_mode_non_connecte.css">
 
-    hr {
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 40px 0;
-    }
-    
-    .copyright {
-        text-align: center;
-        color: #545454;
-    }
-    
-    
-</style>
 </head>
 <body>
     <footer>
@@ -100,8 +35,8 @@
             </div>
 
             <div class="right">
-                <button class="btn-signup">Inscrivez-vous</button>
-                <p class="login">Connexion</p>
+                <a href="Inscription.php" class="btn-signup">Inscrivez-vous</a>
+                <a href="Page_connexion.php" class="login">Connexion</a>
             </div>
         </div>
         <hr>
