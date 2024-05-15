@@ -4,89 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inscription</title>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    font-family: 'Arial', sans-serif;
-    background: #f1f3f6;
-  }
-
-  .header-container {
-    width: 100%;
-    padding: 20px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
-  .main-content {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start; /* Align left */
-    align-items: flex-start; /* Adjust to top */
-    padding-left: 20px; /* Add padding to align with form */
-    padding-top: 50px; /* Add padding to move the form up */
-  }
-
-  .signup-container {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 400px;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .signup-title {
-    font-size: 24px;
-    color: #f2994a;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .signup-form input, .signup-form button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .signup-form button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    background-color: #e68300;
-    border-radius: 4px;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 18px;
-  }
-
-  .signup-form button:hover {
-    background-color: #f2994a;
-  }
-  
-  footer {
-    margin-top: 50px; /* Ajout de la marge supérieure */
-  }
-  
-  .image-right {
-    margin-left: auto; /* Aligner à droite */
-  }
-</style>
+<link rel="stylesheet" href="inscription.css">
 </head>
+
 <body>
 <?php include 'Header_accueil.html'; ?>
 <div class="main-content">
