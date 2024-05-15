@@ -23,9 +23,13 @@
 
 
 <?php
-
+    $host="localhost"; 
+    $dbname="SkillSoly";
+    $user="postgres";
+    $port="5432"; 
+    $password="********";
     // Connexion à la base de données
-    $connexion = pg_connect("host=localhost dbname=SkillSolidarity_Valerian user=postgres password=mfp98x");
+    $connexion = pg_connect("host=$host dbname=$dbname user=$user port=$port password=$password");
 
     // Vérification de la connexion
     if (!$connexion) {
