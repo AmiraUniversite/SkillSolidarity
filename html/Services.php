@@ -36,7 +36,7 @@
                         document.getElementById("annonces").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET", "Services.php?categorie=" + categorie, true); // Remplacez "nom_de_votre_script_php.php" par le nom de votre fichier PHP
+                xmlhttp.open("GET", "Services.php?categorie=" + categorie, true);
                 xmlhttp.send();
             }
         </script>
@@ -79,7 +79,9 @@ if (isset($_GET['categorie'])) {
     if ($annonces) {
         foreach ($annonces as $annonce) {
             echo "Titre : " . $annonce['NomService'] . "<br>";
-            echo "Description : " . $annonce['Description_optionnel'] . "<br>";
+            echo "La Date :" . $annonce['DateService'] . "<br>";
+            echo "Compétence requise :" . $annonce['CompetenceRequise'] . "<br>";
+
             
         }
     } else {
