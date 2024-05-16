@@ -39,26 +39,27 @@
             die("Echec de la connexion : " . pg_last_error());
         }
 
-        // Vérification de la bonne soumission du formulaire
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-        
-        // Exécuter la requête SQL
-        $sql = "SELECT ..., ... FROM table WHERE condition";
-        $result = $conn->query($sql);
-
-        // Vérifier s'il y a des résultats
-        if ($result->num_rows > 0) {
-            // Parcourir les résultats
-            while($row = $result->fetch_assoc()) {
-                echo "....: " . $row["..."]. " - ...: " . $row["..."]. "<br>";
-            }
-        } else {
-            echo "0 résultats";
+        // Fonction pour récupérer les annonces en fonction de la catégorie
+        function getAnnonces($categorie, $connexion) {
+            $query = "SELECT * FROM annonces WHERE categorie = $1";
+            $result = pg_query_params($connexion, $query, array($categorie));
+            $annonces = pg_fetch_all($result);
+            return $annonces;
         }
-    }
-        pg_close($connexion);
-    
+
+        // Vérifier si un bouton a été cliqué
+        if (isset($_GET['categorie'])) {
+            $categorie = $_GET['categorie'];
+            $annonces = getAnnonces($categorie, $connexion);
+            // Afficher les annonces
+            foreach ($annonces as $annonce) {
+                echo "Titre : " . $annonce['titre'] . "<br>";
+                echo "Description : " . $annonce['description'] . "<br>";
+                echo "<hr>";
+            }
+}
+
     ?>
 
     </div>
