@@ -24,10 +24,10 @@
             <button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button>
             <button class="button" onclick="afficherAnnonces('Assistance administrative')">Assistance administrative</button>
             <button class="button" onclick="afficherAnnonces('Coaching/Conseils')">Coaching/Conseils</button>
-
-            <div id="annonces"></div>
         </ul>
 
+        <div id="annonces"></div>
+        
         <script>
             function afficherAnnonces(categorie) {
                 var xmlhttp = new XMLHttpRequest();
@@ -36,7 +36,7 @@
                         document.getElementById("annonces").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET", "nom_de_votre_script_php.php?categorie=" + categorie, true); // Remplacez "nom_de_votre_script_php.php" par le nom de votre fichier PHP
+                xmlhttp.open("GET", "Services.php?categorie=" + categorie, true); // Remplacez "nom_de_votre_script_php.php" par le nom de votre fichier PHP
                 xmlhttp.send();
             }
         </script>
@@ -44,8 +44,6 @@
     </div>
 </body>
 </html>
-
-        
 
 <?php
 
