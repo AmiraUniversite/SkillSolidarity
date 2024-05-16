@@ -45,7 +45,7 @@
 </html>
         
 
-        <?php
+<?php
 
         // Connexion à la base de données
         $host="localhost"; 
@@ -81,9 +81,9 @@
                 echo "Description : " . $annonce['description'] . "<br>";
                 echo "<hr>";
             }
-}
+        }
 
-    ?>
+?>
 
 
 
