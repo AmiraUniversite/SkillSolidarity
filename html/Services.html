@@ -13,14 +13,35 @@
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégorie suivantes:</p>
         <ul class="options">
-            <li><a href="#" class="button">Jardinage</a></li>
-            <li><a href="#" class="button">Plomberie</a></li>
-            <li><a href="#" class="button">Aide à domicile</a></li>
-            <li><a href="#" class="button">Peinture</a></li>
-            <li><a href="#" class="button">Mécanique</a></li>
-            <li><a href="#" class="button">Déménagement</a></li>
+
+
+            <button class="button" onclick="afficherAnnonces('Jardinage')">Jardinage</button>
+            <button class="button" onclick="afficherAnnonces('Plomberie')">Plomberie</button>
+            <button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button>
+            <button class="button" onclick="afficherAnnonces('Peinture')">Peinture</button>
+            <button class="button" onclick="afficherAnnonces('Mécanique')">Mécanique</button>
+            <button class="button" onclick="afficherAnnonces('Déménagement')">Déménagement</button>
             <li><a href="#" class="button">Autres</a></li>
+
+             <div id="annonces"></div>
+
         </ul>
+
+             <script>
+                function afficherAnnonces(categorie) {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("annonces").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "annonces.php?categorie=" + categorie, true);
+                    xmlhttp.send();
+                }
+            </script>
+
+
+        
 
         <?php
 
