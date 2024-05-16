@@ -82,11 +82,10 @@ if (isset($_GET['categorie'])) {
         foreach ($annonces as $annonce) {
             echo "Titre : " . $annonce['NomService'] . "<br>";
             echo "Description : " . $annonce['Description_optionnel'] . "<br>";
-            // Ajoutez d'autres colonnes que vous souhaitez afficher
-            echo "<hr>";
+            
         }
     } else {
-        echo "Aucune annonce trouvée pour cette catégorie.";
+        echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
     }
 }
 
