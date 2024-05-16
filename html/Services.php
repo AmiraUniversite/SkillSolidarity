@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <?php include 'Header_accueil.html';?>
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégorie suivantes:</p>
