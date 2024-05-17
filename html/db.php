@@ -14,7 +14,7 @@ function connectDb() {
     global $connection_string;
     $conn = pg_connect($connection_string);
     if ($conn) {
-        echo "Connected successfully to PostgreSQL database.\n";
+        
         return $conn;
     } else {
         echo "Error in connecting to PostgreSQL database.\n";

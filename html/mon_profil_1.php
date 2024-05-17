@@ -65,57 +65,20 @@ if ($conn) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mon Profil</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/mon_profil_2.css">
-<style>
-  .reservation-card {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
-  }
-  .reservation-image {
-    width: 100px;
-    height: 100px;
-    margin-right: 15px;
-    border-radius: 10px;
-  }
-  .reservation-details {
-    flex: 1;
-  }
-  .reservation-details h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-  .reservation-details p {
-    margin: 5px 0;
-    color: #666;
-  }
-  .reservation-status {
-    text-align: right;
-  }
-  .status-upcoming {
-    color: orange;
-  }
-  .status-completed {
-    color: green;
-  }
-</style>
+<link rel="stylesheet" href="css/mon_profil_1.css"> <!-- Adjusted path -->
 </head>
 <body>
 <?php include 'Header_accueil.html'; ?>
 <div class="main-content">
   <div class="profile-container">
-    <h1><?php echo isset($user_info) ? $user_info['nomu'] . ' ' . $user_info['prénomu'] : 'Nom Prénom'; ?></h1>
+    <h1><?php echo isset($user_info) ? htmlspecialchars($user_info['nomu']) . ' ' . htmlspecialchars($user_info['prénomu']) : 'Nom Prénom'; ?></h1>
     <div class="info-box">
       <div class="info-title">Adresse mail :</div>
-      <div class="info-content"><?php echo isset($user_info) ? $user_info['emailu'] : 'email@example.com'; ?></div>
+      <div class="info-content"><?php echo isset($user_info) ? htmlspecialchars($user_info['emailu']) : 'email@example.com'; ?></div>
       <div class="info-title">Numéro de téléphone :</div>
       <div class="info-content"><?php echo isset($user_info) ? '+33000000000' : '+33000000000'; ?></div> <!-- Placeholder for phone number -->
       <div class="info-title">Ville :</div>
-      <div class="info-content"><?php echo isset($user_info) ? $user_info['ville'] : 'Toulouse'; ?></div>
+      <div class="info-content"><?php echo isset($user_info) ? htmlspecialchars($user_info['ville']) : 'Toulouse'; ?></div>
       <div class="info-title">Compétences :</div>
       <div class="info-content"><?php echo isset($user_info) ? 'Jardinage - Intermédiaire' : 'Jardinage - Intermédiaire'; ?></div> <!-- Placeholder for skills -->
       <div class="info-title">Note :</div>
@@ -130,7 +93,7 @@ if ($conn) {
         <div class="reservation-card">
           <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
           <div class="reservation-details">
-            <h3><?php echo $reservation['nomservice']; ?></h3>
+            <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
             <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
             <p><?php echo date('H:i', strtotime($reservation['date_service'])); ?></p>
           </div>
