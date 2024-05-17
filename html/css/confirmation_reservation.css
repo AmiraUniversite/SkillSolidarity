@@ -1,0 +1,176 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+header .logo img {
+    height: 25px;
+}
+
+header .nav-links a,
+header .right-links button {
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header .right-links button {
+    background-color: #f28c21;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header .right-links button:hover {
+    background-color: #d77a1a;
+}
+
+main {
+    flex: 1 0 auto;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-container h1 {
+    text-align: center;
+    color: #f28c21;
+    margin-bottom: 20px;
+}
+
+.mission-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.mission-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.mission-info {
+    flex: 1;
+}
+
+.mission-info h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mission-info h3 {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.mission-info p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.mission-info ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.mission-info ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.mission-info ul li i {
+    color: #f28c21;
+    margin-right: 10px;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    background-color: #f28c21;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.confirm-button:hover {
+    background-color: #d77a1a;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+footer .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer .footer-nav-item {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 10px;
+    transition: color 0.3s ease;
+}
+
+footer .footer-nav-item:hover {
+    color: #f2994A;
+}
+
+footer .footer-logo {
+    margin: 10px auto;
+}
+
+footer .footer-separator {
+    border-top: 1px solid #cccccc;
+    margin: 20px 0;
+}
+
+footer .copyright {
+    font-size: 15px;
+    color: #777777;
+    margin: 20px 0;
+}

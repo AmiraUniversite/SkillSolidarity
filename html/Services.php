@@ -46,49 +46,47 @@
 </html>
 
 <?php
+session_start(); // Démarrer la session
 
-// Connexion à la base de données
-$host = "localhost";
-$dbname = "SkillSolidarity";
-$user = "postgres";
-$port = "5432";
-$password = "******";
+$host = 'localhost';
+$db = 'SkillSoly';
+$user = 'postgres';
+$pass = '016979B558@y';
+$port = '5433';
+$dsn = "pgsql:host=$host;port=$port;dbname=$db";
 
-// Connexion à la base de données
-$connexion = pg_connect("host=$host dbname=$dbname user=$user port=$port password=$password");
-
-// Vérifier la connexion
-if (!$connexion) {
-    die("Echec de la connexion : " . pg_last_error());
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Echec de la connexion : " . $e->getMessage());
 }
 
 // Fonction pour récupérer les annonces en fonction de la catégorie
-function getAnnonces($categorie, $connexion)
+function getAnnonces($categorie, $pdo)
 {
-    $query = "SELECT * FROM public.\"Service\" WHERE Categorie = $1";
-    $result = pg_query_params($connexion, $query, array($categorie));
-    $annonces = pg_fetch_all($result);
-    return $annonces;
+    $query = "SELECT * FROM public.\"Service\" WHERE Categorie = :categorie";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['categorie' => $categorie]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Vérifier si un bouton a été cliqué
 if (isset($_GET['categorie'])) {
     $categorie = $_GET['categorie'];
-    $annonces = getAnnonces($categorie, $connexion);
+    $annonces = getAnnonces($categorie, $pdo);
+
     // Afficher les annonces
     if ($annonces) {
         foreach ($annonces as $annonce) {
-            echo "Titre : " . $annonce['NomService'] . "<br>";
-            echo "La Date :" . $annonce['DateService'] . "<br>";
-            echo "Compétence requise :" . $annonce['CompetenceRequise'] . "<br>";
-
-            
+            echo "Titre : " . htmlspecialchars($annonce['NomService']) . "<br>";
+            echo "La Date : " . htmlspecialchars($annonce['DateService']) . "<br>";
+            echo "Compétence requise : " . htmlspecialchars($annonce['CompetenceRequise']) . "<br><br>";
         }
     } else {
         echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
     }
 }
-
 ?>
 
 
