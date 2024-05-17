@@ -89,8 +89,3 @@ if (isset($_GET['categorie'])) {
 }
 session_destroy();
 ?>
-
-
-
-
-
