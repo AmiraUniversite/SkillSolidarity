@@ -8,6 +8,8 @@ $pass = 'mfp98x'; // Remplacez par votre mot de passe
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
+
+
 if (isset($_POST['connect'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
