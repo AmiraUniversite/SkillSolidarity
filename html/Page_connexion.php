@@ -2,11 +2,12 @@
 session_start(); // Démarrer la session
 
 $host = 'localhost';
-$db = 'SkillSolidarity';
+$db = 'Final';
 $user = 'postgres';
-$pass = '********';
-$port = '5432';
+$pass= 'amira';
+$port = '5432'; // default port for PostgreSQL, change if different
 $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+
 
 if (isset($_POST['connect'])) {
     $username = $_POST['username'];
@@ -22,7 +23,7 @@ if (isset($_POST['connect'])) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user && $password === $user['userpassword']) {
             // Redirection si le mot de passe est correct
-            header("Location: Accueil_Utilisateur.php");
+            header("Location: mon_profil_1.php");
             exit;
         } else {
             // Affichage d'un message d'erreur si le mot de passe ou le nom d'utilisateur est incorrect

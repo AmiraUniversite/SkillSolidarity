@@ -1,7 +1,7 @@
 <?php
 // Database connection settings
 $host = 'localhost';
-$dbname = 'Site2';
+$dbname = 'Final';
 $user = 'postgres';
 $password = 'amira';
 $port = '5432'; // default port for PostgreSQL, change if different
@@ -32,7 +32,7 @@ if ($conn) {
     // Define the query to fetch user data
     $user_query = "
     SELECT * FROM public.\"Utilisateur\"
-    WHERE \"idutilisateur\" = 'user001';
+    WHERE \"idutilisateur\" = 'U1';
     ";
 
     // Execute the query to fetch user data
@@ -55,7 +55,7 @@ if ($conn) {
     SELECT s.*, o.\"dateservice\" as \"date_service\"
     FROM public.\"Service\" s
     JOIN public.\"Offrir\" o ON s.\"idservice\" = o.\"idservice\"
-    WHERE o.\"idutilisateur\" = 'user001';
+    WHERE o.\"idutilisateur\" = 'U1';
     ";
 
     // Execute the query to fetch reservations
