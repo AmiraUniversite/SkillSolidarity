@@ -8,6 +8,7 @@ $pass = '********';
 $port = '5432';
 $dsn = "pgsql:host=$host;port=$port;dbname=$db";
 
+
 if (isset($_POST['connect'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
