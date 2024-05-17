@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégorie suivantes:</p>
-        <ul class="options">
+        <li class="options">
             <button class="button" onclick="afficherAnnonces('Travaux')">Travaux</button>
             <button class="button" onclick="afficherAnnonces('Entretien')">Entretien</button>
             <button class="button" onclick="afficherAnnonces('Animaux')">Animaux</button>
@@ -24,7 +24,7 @@
             <button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button>
             <button class="button" onclick="afficherAnnonces('Assistance administrative')">Assistance administrative</button>
             <button class="button" onclick="afficherAnnonces('Coaching/Conseils')">Coaching/Conseils</button>
-        </ul>
+        </li>
 
         <div id="annonces"></div>
         
@@ -87,6 +87,7 @@ if (isset($_GET['categorie'])) {
         echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
     }
 }
+session_destroy();
 ?>
 
 
