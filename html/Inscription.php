@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -50,3 +52,66 @@
 
 </body>
 </html>
+
+<?php
+session_start(); // Démarrer la session
+
+// Paramètres de connexion à la base de données
+$host = 'localhost';
+$port = '5433';
+$dbname = 'SkillSoly';
+$user = 'postgres';
+$pass = '016979B558@y';
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erreur de connexion à la base de données: " . $e->getMessage());
+}
+
+// Vérification si le formulaire a été soumis
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Récupération et validation des données du formulaire
+    $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
+    $prenom = filter_input(INPUT_POST, 'prénom', FILTER_SANITIZE_STRING);
+    $adresse = filter_input(INPUT_POST, 'adresse', FILTER_SANITIZE_STRING);
+    $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_STRING);
+    $code_postal = filter_input(INPUT_POST, 'code_postal', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+
+    // Validation supplémentaire
+    if ($password !== $confirm_password) {
+        die("Les mots de passe ne correspondent pas.");
+    }
+
+    // Hashage du mot de passe
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Requête SQL INSERT pour insérer les données dans la table "utilisateur"
+    $requete = "INSERT INTO utilisateur (nomu, prenomu, adresse, ville, code_postal, emailu, motdepasseu)
+                VALUES (:nom, :prenom, :adresse, :ville, :code_postal, :email, :motdepasse)";
+
+    $stmt = $pdo->prepare($requete);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':adresse', $adresse);
+    $stmt->bindParam(':ville', $ville);
+    $stmt->bindParam(':code_postal', $code_postal);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':motdepasse', $hashed_password);
+
+    // Exécution de la requête SQL
+    if ($stmt->execute()) {
+        echo "Inscription réussie.";
+    } else {
+        echo "Erreur lors de l'inscription.";
+    }
+
+    // Fermer la connexion à la base de données
+    $pdo = null;
+}
+?>
