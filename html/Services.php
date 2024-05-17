@@ -50,22 +50,23 @@
     $user = 'postgres';
     $pass = '016979B558@y';
     $port = '5433';
-    $dsn = "pgsql:host=$host;port=$port;dbname=$db";
+    $connection_string = "host=$host port=$port dbname=$db user=$user password=$pass";
 
-    try {
-        $pdo = new PDO($dsn, $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Echec de la connexion : " . $e->getMessage());
+    // Connexion à la base de données
+    $pdo = pg_connect($connection_string);
+    if (!$pdo) {
+        die("Echec de la connexion : " . pg_last_error());
     }
 
     // Fonction pour récupérer les annonces en fonction de la catégorie
     function getAnnonces($categorie, $pdo)
     {
-        $query = "SELECT * FROM public.\"Service\" WHERE Categorie = :categorie";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute(['categorie' => $categorie]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $query = "SELECT * FROM public.\"Service\" WHERE Categorie = $1";
+        $result = pg_query_params($pdo, $query, array($categorie));
+        if (!$result) {
+            die("Erreur de requête : " . pg_last_error());
+        }
+        return pg_fetch_all($result);
     }
 
     // Vérifier si un bouton a été cliqué
@@ -84,7 +85,6 @@
             echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
         }
     }
+    pg_close($pdo);
     session_destroy();
-    ?>
-</body>
-</html>
+?>
