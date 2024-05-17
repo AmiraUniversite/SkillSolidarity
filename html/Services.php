@@ -12,7 +12,7 @@
     <?php include 'Header_profile.html';?>
     <div class="container">
         <h1>Résultat de recherche</h1>
-        <p class="filter">Veuillez choisir parmi les catégorie suivantes:</p>
+        <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <li class="options">
             <button class="button" onclick="afficherAnnonces('Travaux')">Travaux</button>
             <button class="button" onclick="afficherAnnonces('Entretien')">Entretien</button>
