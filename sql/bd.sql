@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS public."Offrir" (
     FOREIGN KEY (IDService) REFERENCES public."Service" (IDService),
     FOREIGN KEY (IDUtilisateur) REFERENCES public."Utilisateur" (IDUtilisateur)
 );
-
+ 
 -- Table Planifier
 CREATE TABLE IF NOT EXISTS public."Planifier" (
     IDService VARCHAR(50),
