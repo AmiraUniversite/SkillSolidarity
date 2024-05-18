@@ -417,7 +417,7 @@
 // PostgreSQL database connection parameters
 $host = "localhost"; // e.g., localhost
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "Skillsolidarity";
+$dbname = "SkillSolidarity";
 $user = "postgres";
 $password = "mfp98x";
 
@@ -435,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars($_POST['message']);
 
     // Prepare and execute insert query
-    $query = "INSERT INTO contact_form (name, email, message) VALUES ($1, $2, $3)";
+    $query = "INSERT INTO contact_form (name, email, messageContact) VALUES ($1, $2, $3)";
     $result = pg_prepare($conn, "insert_query", $query);
     if ($result) {
         $result = pg_execute($conn, "insert_query", array($name, $email, $message));
