@@ -2,6 +2,7 @@
 session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
+$conn_str = "host=your_host dbname=your_db user=your_user password=your_password"; // Remplacez les valeurs par les vôtres
 $conn = pg_connect($conn_str);
 
 if (!$conn) {
