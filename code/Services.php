@@ -60,16 +60,12 @@ if (!$conn) {
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <form method="POST" action="">
             <ul class="options">
-                <li><button class="button" type="submit" name="categorie" value="Travaux">Travaux</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Entretien">Entretien</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Animaux">Animaux</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Bricolage">Bricolage</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Automobile">Automobile</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Services Informatiques">Services Informatiques</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Cours Particuliers/ Education">Cours Particuliers/ Education</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Aide à domicile">Aide à domicile</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Assistance administrative">Assistance administrative</button></li>
-                <li><button class="button" type="submit" name="categorie" value="Coaching/Conseils">Coaching/Conseils</button></li>
+                <li><button class="button" onclick="afficherAnnonces('JARDINAGE')">Jardinage</button></li>
+                <li><button class="button" onclick="afficherAnnonces('PLOMBERIE')">Plomberie</button></li>
+                <li><button class="button" onclick="afficherAnnonces('MENAGE')">Ménage</button></li>
+                <li><button class="button" onclick="afficherAnnonces('PEINTURE')">Peinture</button></li>
+                <li><button class="button" onclick="afficherAnnonces('MECANIQUE')">Mécanique</button></li>
+                <li><button class="button" onclick="afficherAnnonces('DEMENAGEMENT')">Déménagement</button></li>
             </ul>
         </form>
     </div>
