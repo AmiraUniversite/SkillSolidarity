@@ -14,11 +14,11 @@ body {
 
 .profile-container {
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 40%; /* Reduced width */
-  max-width: 800px; /* Increased max-width */
+  width: 50%; /* Further reduced width */
+  max-width: 600px; /* Keep the same max-width for more length */
   margin-bottom: 20px;
   text-align: center;
   border: 3px solid black; /* Thicker border */

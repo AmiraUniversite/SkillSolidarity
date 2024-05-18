@@ -1,19 +1,18 @@
 <?php
 session_start(); // Démarrer la session
-
 $host = 'localhost';
-$db = 'Skillsolidarity';
+$dbname = 'Final';
 $user = 'postgres';
-$pass = 'mfp98x'; // Remplacez par votre mot de passe !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$port = '5432';
-$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
+$password = 'amira';
+$port = '5432'; // default port for PostgreSQL, change if different
+$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 if (isset($_POST['connect'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Connexion à la base de données PostgreSQL
-    $conn = pg_connect($conn_str);
+    $conn = pg_connect($connection_string);
 
     if (!$conn) {
         // Afficher un message si la connexion échoue
