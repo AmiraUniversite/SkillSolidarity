@@ -18,11 +18,8 @@ if (isset($_POST['connect'])) {
         // Afficher un message si la connexion échoue
         echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
     } else {
-        // Afficher un message si la connexion réussit
-        echo '<p>Connexion à la base de données réussie.</p>';
-
         // Préparation et exécution de la requête pour vérifier l'email et le mot de passe
-        $result = pg_prepare($conn, "my_query", 'SELECT "motdepasseu" FROM public."Utilisateur" WHERE "emailu" = $1');
+        $result = pg_prepare($conn, "my_query", 'SELECT "idutilisateur", "motdepasseu" FROM public."Utilisateur" WHERE "emailu" = $1');
         if (!$result) {
             echo '<p class="erreur">Erreur lors de la préparation de la requête.</p>';
         } else {
@@ -32,10 +29,10 @@ if (isset($_POST['connect'])) {
             } else {
                 $user = pg_fetch_assoc($result);
                 if ($user && $password === $user['motdepasseu']) {
-                    // Afficher un message si le mot de passe est correct
+                    // Stocker l'identifiant de l'utilisateur dans la session
+                    $_SESSION['user_id'] = $user['idutilisateur'];
                     echo '<p>Connexion réussie. Redirection en cours...</p>';
                     // Redirection si le mot de passe est correct
-                    echo '<p>TEST TEST ERROR</p>';
                     header("Location: mon_profil_1.php");
                     exit;
                 } else {
@@ -50,6 +47,7 @@ if (isset($_POST['connect'])) {
     pg_close($conn);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
