@@ -76,15 +76,15 @@
 
         // Afficher les annonces
         if ($annonces) {
-            foreach ($annonces as $annonce) {
-                echo "Titre : " . htmlspecialchars($annonce['NomService']) . "<br>";
-                echo "La Date : " . htmlspecialchars($annonce['DateService']) . "<br>";
-                echo "Compétence requise : " . htmlspecialchars($annonce['CompetenceRequise']) . "<br><br>";
+            foreach ($annonces as $annonce) { //Parcourt chaque élément du tableau $annonces, en le stockant dans une variable $annonce à chaque itération. Cette boucle permet de traiter chaque annonce individuellement.
+                echo "Titre : " . htmlspecialchars($annonce['NomService']) . "<br>"; //Affiche le titre de l'annonce en utilisant la fonction htmlspecialchars() pour convertir les caractères spéciaux en entités HTML. Le titre de l'annonce est extrait à partir de la clé 'NomService' du tableau $annonce.
+                echo "La Date : " . htmlspecialchars($annonce['DateService']) . "<br>"; //Affiche la date de l'annonce, extraite de la clé 'DateService' du tableau $annonce. 
+                echo "Compétence requise : " . htmlspecialchars($annonce['CompetenceRequise']) . "<br><br>"; // Affiche les compétences requises pour l'annonce, extraites de la clé 'CompetenceRequise' du tableau $annonce.
             }
         } else {
             echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
         }
     }
     pg_close($pdo);
-    session_destroy();
+    session_destroy(); // fermeture de la session
 ?>
