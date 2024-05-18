@@ -1,3 +1,41 @@
+<?php
+    session_start(); // Démarrer la session
+
+    // Connexion à la base de données PostgreSQL
+    $conn = pg_connect($conn_str);
+
+    if (!$conn) {
+        // Afficher un message si la connexion échoue
+        echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
+    } else {
+        // Afficher un message si la connexion réussit
+        echo '<p>Connexion à la base de données réussie.</p>';
+        
+        // Vérifier si un bouton a été cliqué
+        if(isset($_POST['categorie'])) {
+            
+            // Requête SQL pour récupérer les informations
+            $query = "SELECT DateService, NomService, CompétenceRequise FROM public.\"Service\" WHERE upper(Categorie) = upper('$categorie')";
+            
+            // Exécution de la requête
+            $result = pg_query($conn, $query);
+            
+            // Vérifier si la requête a réussi
+            if ($result) {
+                // Afficher les résultats
+                while ($row = pg_fetch_assoc($result)) {
+                    echo "<p>Date du service : " . $row['DateService'] . "</p>";
+                    echo "<p>Nom du service : " . $row['NomService'] . "</p>";
+                    echo "<p>Compétence requise : " . $row['CompétenceRequise'] . "</p>";
+                }
+            } else {
+                echo '<p class="erreur">Erreur lors de l\'exécution de la requête.</p>';
+            }
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,50 +79,5 @@
         </script>
 
     </div>
-
-    <?php
-    session_start(); // Démarrer la session
-
-    $host = 'localhost';
-    $db = 'SkillSoly';
-    $user = 'postgres';
-    $pass = '016979B558@y';
-    $port = '5433';
-    $connection_string = "host=$host port=$port dbname=$db user=$user password=$pass";
-
-    // Connexion à la base de données
-    $pdo = pg_connect($connection_string);
-    if (!$pdo) {
-        die("Echec de la connexion : " . pg_last_error());
-    }
-
-    // Fonction pour récupérer les annonces en fonction de la catégorie
-    function getAnnonces($categorie, $pdo)
-    {
-        $query = "SELECT * FROM public.\"Service\" WHERE Categorie = $1";
-        $result = pg_query_params($pdo, $query, array($categorie));
-        if (!$result) {
-            die("Erreur de requête : " . pg_last_error());
-        }
-        return pg_fetch_all($result);
-    }
-
-    // Vérifier si un bouton a été cliqué
-    if (isset($_GET['categorie'])) {
-        $categorie = $_GET['categorie'];
-        $annonces = getAnnonces($categorie, $pdo);
-
-        // Afficher les annonces
-        if ($annonces) {
-            foreach ($annonces as $annonce) { //Parcourt chaque élément du tableau $annonces, en le stockant dans une variable $annonce à chaque itération. Cette boucle permet de traiter chaque annonce individuellement.
-                echo "Titre : " . htmlspecialchars($annonce['NomService']) . "<br>"; //Affiche le titre de l'annonce en utilisant la fonction htmlspecialchars() pour convertir les caractères spéciaux en entités HTML. Le titre de l'annonce est extrait à partir de la clé 'NomService' du tableau $annonce.
-                echo "La Date : " . htmlspecialchars($annonce['DateService']) . "<br>"; //Affiche la date de l'annonce, extraite de la clé 'DateService' du tableau $annonce. 
-                echo "Compétence requise : " . htmlspecialchars($annonce['CompetenceRequise']) . "<br><br>"; // Affiche les compétences requises pour l'annonce, extraites de la clé 'CompetenceRequise' du tableau $annonce.
-            }
-        } else {
-            echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
-        }
-    }
-    pg_close($pdo);
-    session_destroy(); // fermeture de la session
-?>
+</body>
+</html>
