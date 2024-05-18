@@ -88,7 +88,6 @@ if ($conn) {
 }
 ?>
 
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -101,8 +100,8 @@ if ($conn) {
 <body>
 <?php include 'Header_profile.php'; ?>
 <div class="main-content">
+  <h1 class="user-name"><?php echo isset($user_info) ? htmlspecialchars($user_info['nomu']) . ' ' . htmlspecialchars($user_info['prénomu']) : 'Nom Prénom'; ?></h1>
   <div class="profile-container">
-    <h1><?php echo isset($user_info) ? htmlspecialchars($user_info['nomu']) . ' ' . htmlspecialchars($user_info['prénomu']) : 'Nom Prénom'; ?></h1>
     <div class="info-box">
       <div class="info-title">Adresse mail :</div>
       <div class="info-content"><?php echo isset($user_info) ? htmlspecialchars($user_info['emailu']) : 'email@example.com'; ?></div>

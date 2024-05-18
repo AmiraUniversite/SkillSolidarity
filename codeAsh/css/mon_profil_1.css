@@ -12,22 +12,23 @@ body {
   padding: 20px;
 }
 
+.user-name {
+  color: #FF8C00; /* Orange color for the name */
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .profile-container {
   background-color: #fff;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 50%; /* Further reduced width */
-  max-width: 600px; /* Keep the same max-width for more length */
+  width: 50%;
+  max-width: 600px;
   margin-bottom: 20px;
   text-align: center;
-  border: 3px solid black; /* Thicker border */
-}
-
-.profile-container h1 {
-  color: #FF8C00;
-  font-size: 2em;
-  margin-bottom: 20px;
+  border: 3px solid black;
 }
 
 .info-box {
@@ -45,7 +46,7 @@ body {
   color: #FF8C00;
 }
 
-.info-box .info-data {
+.info-box .info-content {
   color: #333;
 }
 
