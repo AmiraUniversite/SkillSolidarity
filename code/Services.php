@@ -1,3 +1,47 @@
+<?php
+session_start(); // Démarrer la session
+
+// Connexion à la base de données PostgreSQL
+$conn_str = "host=your_host dbname=your_db user=your_user password=your_password"; // Remplacez les valeurs par les vôtres
+$conn = pg_connect($conn_str);
+
+if (!$conn) {
+    // Afficher un message si la connexion échoue
+    echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
+} else {
+    // Afficher un message si la connexion réussit
+    echo '<p>Connexion à la base de données réussie.</p>';
+
+    // Vérifier si un bouton a été cliqué et si la catégorie est définie
+    if(isset($_POST['categorie'])) {
+        $categorie = pg_escape_string($_POST['categorie']);
+
+        // Requête SQL pour récupérer les informations en utilisant une requête préparée
+        $query = "SELECT \"DateService\", \"NomService\", \"CompétenceRequise\" FROM public.\"Service\" WHERE upper(\"Categorie\") = upper($1)";
+        
+        // Exécution de la requête préparée
+        $result = pg_query_params($conn, $query, array($categorie));
+        
+        // Vérifier si la requête a réussi
+        if ($result) {
+            // Afficher les résultats
+            while ($row = pg_fetch_assoc($result)) {
+?>
+                <div class="Service proposé">
+                    <p>Nom du service : <?php echo $row['NomService']; ?></p>
+                    <p>Date du service : <?php echo $row['DateService']; ?></p>
+                    <p>Compétence requise : <?php echo $row['CompétenceRequise']; ?></p>
+                </div>
+<?php
+            }
+        } else {
+            echo '<p>Il n existe pas d\'annonces correspondant à votre demande</p>';
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,79 +56,21 @@
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
-        <ul class="options">
-            <li><button class="button" onclick="afficherAnnonces('Travaux')">Travaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Entretien')">Entretien</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Animaux')">Animaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Bricolage')">Bricolage</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Automobile')">Automobile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Services Informatiques')">Services Informatiques</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Cours Particuliers/ Education')">Cours Particuliers/ Education</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Assistance administrative')">Assistance administrative</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Coaching/Conseils')">Coaching/Conseils</button></li>
-        </ul>
-
-        <div id="annonces"></div>
-        
-        <script>
-            function afficherAnnonces(categorie) {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("annonces").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "Services.php?categorie=" + categorie, true);
-                xmlhttp.send();
-            }
-        </script>
-
+        <form method="POST" action="">
+            <ul class="options">
+                <li><button class="button" type="submit" name="categorie" value="Travaux">Travaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Entretien">Entretien</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Animaux">Animaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Bricolage">Bricolage</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Automobile">Automobile</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Services Informatiques">Services Informatiques</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Cours Particuliers/ Education">Cours Particuliers/ Education</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Aide à domicile">Aide à domicile</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Assistance administrative">Assistance administrative</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Coaching/Conseils">Coaching/Conseils</button></li>
+            </ul>
+        </form>
     </div>
+</body>
+</html>
 
-    <?php
-    session_start(); // Démarrer la session
-
-    $host = 'localhost';
-    $db = 'SkillSoly';
-    $user = 'postgres';
-    $pass = '016979B558@y';
-    $port = '5433';
-    $connection_string = "host=$host port=$port dbname=$db user=$user password=$pass";
-
-    // Connexion à la base de données
-    $pdo = pg_connect($connection_string);
-    if (!$pdo) {
-        die("Echec de la connexion : " . pg_last_error());
-    }
-
-    // Fonction pour récupérer les annonces en fonction de la catégorie
-    function getAnnonces($categorie, $pdo)
-    {
-        $query = "SELECT * FROM public.\"Service\" WHERE Categorie = $1";
-        $result = pg_query_params($pdo, $query, array($categorie));
-        if (!$result) {
-            die("Erreur de requête : " . pg_last_error());
-        }
-        return pg_fetch_all($result);
-    }
-
-    // Vérifier si un bouton a été cliqué
-    if (isset($_GET['categorie'])) {
-        $categorie = $_GET['categorie'];
-        $annonces = getAnnonces($categorie, $pdo);
-
-        // Afficher les annonces
-        if ($annonces) {
-            foreach ($annonces as $annonce) {
-                echo "Titre : " . htmlspecialchars($annonce['NomService']) . "<br>";
-                echo "La Date : " . htmlspecialchars($annonce['DateService']) . "<br>";
-                echo "Compétence requise : " . htmlspecialchars($annonce['CompetenceRequise']) . "<br><br>";
-            }
-        } else {
-            echo "Aucune annonce trouvée pour la catégorie que vous venez de sélectionner.";
-        }
-    }
-    pg_close($pdo);
-    session_destroy();
-?>
