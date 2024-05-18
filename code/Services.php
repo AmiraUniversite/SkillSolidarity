@@ -50,34 +50,21 @@
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
-        <ul class="options">
-            <li><button class="button" onclick="afficherAnnonces('Travaux')">Travaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Entretien')">Entretien</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Animaux')">Animaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Bricolage')">Bricolage</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Automobile')">Automobile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Services Informatiques')">Services Informatiques</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Cours Particuliers/ Education')">Cours Particuliers/ Education</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Assistance administrative')">Assistance administrative</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Coaching/Conseils')">Coaching/Conseils</button></li>
-        </ul>
-
-        <div id="annonces"></div>
-        
-        <script>
-            function afficherAnnonces(categorie) {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("annonces").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "Services.php?categorie=" + categorie, true);
-                xmlhttp.send();
-            }
-        </script>
-
+        <form method="POST" action="">
+            <ul class="options">
+                <li><button class="button" type="submit" name="categorie" value="Travaux">Travaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Entretien">Entretien</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Animaux">Animaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Bricolage">Bricolage</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Automobile">Automobile</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Services Informatiques">Services Informatiques</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Cours Particuliers/ Education">Cours Particuliers/ Education</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Aide à domicile">Aide à domicile</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Assistance administrative">Assistance administrative</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Coaching/Conseils">Coaching/Conseils</button></li>
+            </ul>
+        </form>
     </div>
 </body>
 </html>
+
