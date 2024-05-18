@@ -2,7 +2,12 @@
 session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
-$conn_str = "host=your_host dbname=your_db user=your_user password=your_password"; // Remplacez les valeurs par les vôtres
+$host = 'localhost';
+$db = 'Nom_BD';
+$user = 'postgres';
+$pass = 'MDP'; // Remplacez par votre mot de passe
+$port = '5432';
+$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass"; // Remplacez les valeurs par les vôtres
 $conn = pg_connect($conn_str);
 
 if (!$conn) {
@@ -54,7 +59,7 @@ if (!$conn) {
 </head>
 
 <body>
-    <?php include 'Header_profile.html';?>
+    <?php include 'Header_profile.php';?>
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
