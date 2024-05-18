@@ -12,9 +12,9 @@ $user_id = $_SESSION['user_id'];
 
 // Database connection settings
 $host = 'localhost';
-$dbname = 'Final';
+$dbname = 'SkillSolidarity';
 $user = 'postgres';
-$password = 'amira';
+$password = 'mfp98x';
 $port = '5432'; // default port for PostgreSQL, change if different
 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";

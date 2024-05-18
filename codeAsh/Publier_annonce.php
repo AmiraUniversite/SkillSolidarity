@@ -21,6 +21,10 @@
                 <span>Catégorie</span>
                 <input type="text" id="categorie" placeholder="&#x1F4C4;">
             </label>
+            <label for="expertise">
+                <span>Niveau d’expertise</span>
+                <input type="text" id="expertise" placeholder="&#x1F465;">
+            </label>
             <label for="date">
                 <span>Date</span>
                 <input type="date" id="date">
