@@ -43,7 +43,7 @@ CREATE TABLE contact_form (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100),
-    message TEXT
+    messageContact TEXT
 );
 
 -- Table Offrir
