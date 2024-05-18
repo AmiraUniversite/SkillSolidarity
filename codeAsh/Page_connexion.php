@@ -2,13 +2,11 @@
 session_start(); // Démarrer la session
 
 $host = 'localhost';
-$db = 'SkillSolidarityV';
+$db = 'Skillsolidarity';
 $user = 'postgres';
-$pass = 'mfp98x'; // Remplacez par votre mot de passe
+$pass = 'mfp98x'; // Remplacez par votre mot de passe !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
-
-
 
 if (isset($_POST['connect'])) {
     $email = $_POST['email'];
@@ -25,7 +23,7 @@ if (isset($_POST['connect'])) {
         echo '<p>Connexion à la base de données réussie.</p>';
 
         // Préparation et exécution de la requête pour vérifier l'email et le mot de passe
-        $result = pg_prepare($conn, "my_query", "SELECT MotDePasseU FROM Utilisateur WHERE EmailU = $1");
+        $result = pg_prepare($conn, "my_query", 'SELECT "motdepasseu" FROM public."Utilisateur" WHERE "emailu" = $1');
         if (!$result) {
             echo '<p class="erreur">Erreur lors de la préparation de la requête.</p>';
         } else {
@@ -38,6 +36,7 @@ if (isset($_POST['connect'])) {
                     // Afficher un message si le mot de passe est correct
                     echo '<p>Connexion réussie. Redirection en cours...</p>';
                     // Redirection si le mot de passe est correct
+                    echo '<p>TEST TEST ERROR</p>';
                     header("Location: mon_profil_1.php");
                     exit;
                 } else {
@@ -63,27 +62,14 @@ if (isset($_POST['connect'])) {
     <link rel="stylesheet" href="css/Page_connexion.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo.svg" alt="Logo">
-        </div>
-        <div class="nav-links">
-            <a href="#">Accueil</a>
-            <a href="#">Rechercher</a>
-            <a href="#">Demander</a>
-        </div>
-        <div class="right-links">
-            <a href="Page_connexion.php">Connexion</a>
-            <a href="Inscription.php"><button>Inscrivez-vous</button></a>
-        </div>
-    </header>
+<?php include 'Header_profile.php'; ?>
 
     <div class="login-wrapper">
         <div class="login-image">
             <img src="images/client.png" alt="Login Image">
         </div>
         <div class="container">
-            <h2>Connexion</h2>
+            <h2 style="padding-left: 170px;"><span>Connexion</span></h2>
             <form action="#" method="post">
                 <label for="email">Adresse e-mail</label>
                 <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
@@ -92,7 +78,7 @@ if (isset($_POST['connect'])) {
                 <input type="submit" value="Se connecter" name="connect">
             </form>
             <div class="separator" style="border-top: 1px solid #ccc; margin: 10px 0;"></div>
-            <button class="btn-create-account">Créer un compte</button>
+            <button class="btn-create-account"><a style="text-decoration: none; color:white;" href="./Inscription.php">Créer un compte</a> </button>
         </div>
     </div>
 
@@ -103,7 +89,7 @@ if (isset($_POST['connect'])) {
             </div>
 
             <div class="footer-middle">
-                <h4><a href="#">Publier un service</a></h4>
+                <h4><a href="./Publier_annonce.php">Publier un service</a></h4>
             </div>
 
             <div class="footer-right">
