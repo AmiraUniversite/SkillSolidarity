@@ -21,10 +21,6 @@
                 <span>Catégorie</span>
                 <input type="text" id="categorie" placeholder="&#x1F4C4;">
             </label>
-            <!-- <label for="expertise">
-                <span>Niveau d’expertise</span>
-                <input type="text" id="expertise" placeholder="&#x1F465;">
-            </label> -->
             <label for="date">
                 <span>Date</span>
                 <input type="date" id="date">
@@ -35,7 +31,7 @@
             </label>
             <label for="duree">
                 <span>Durée</span>
-                <input type="text" id="duree" placeholder="&#x23F3;">
+                <input type="time" id="duree" placeholder="&#x23F3;">
             </label>
             <label for="description">
                 <span>Description</span>
@@ -44,7 +40,7 @@
             <button type="submit">Publier</button>
         </form>
     </div>
-
+<!-- faire un lien vers le footer-->
     <footer>
         <div class="footer-nav">
             <a href="#" class="footer-nav-item">Contactez-nous</a>
