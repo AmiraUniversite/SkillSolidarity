@@ -1,42 +1,44 @@
 <?php
-    session_start(); // Démarrer la session
+session_start(); // Démarrer la session
 
-    // Connexion à la base de données PostgreSQL
-    $conn = pg_connect($conn_str);
+// Connexion à la base de données PostgreSQL
+$conn = pg_connect($conn_str);
 
-    if (!$conn) {
-        // Afficher un message si la connexion échoue
-        echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
-    } else {
-        // Afficher un message si la connexion réussit
-        echo '<p>Connexion à la base de données réussie.</p>';
+if (!$conn) {
+    // Afficher un message si la connexion échoue
+    echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
+} else {
+    // Afficher un message si la connexion réussit
+    echo '<p>Connexion à la base de données réussie.</p>';
+
+    // Vérifier si un bouton a été cliqué et si la catégorie est définie
+    if(isset($_POST['categorie'])) {
+        $categorie = pg_escape_string($_POST['categorie']);
+
+        // Requête SQL pour récupérer les informations en utilisant une requête préparée
+        $query = "SELECT \"DateService\", \"NomService\", \"CompétenceRequise\" FROM public.\"Service\" WHERE upper(\"Categorie\") = upper($1)";
         
-        // Vérifier si un bouton a été cliqué et si la catégorie est définie
-        if(isset($_POST['categorie'])) {
-            $categorie = $_POST['categorie'];
-            
-            // Requête SQL pour récupérer les informations en utilisant une requête préparée
-            $query = "SELECT DateService, NomService, \"CompétenceRequise\" FROM public.\"Service\" WHERE upper(Categorie) = upper($1)";
-            
-            // Exécution de la requête préparée
-            $result = pg_query_params($conn, $query, array($categorie));
-            
-            // Vérifier si la requête a réussi
-            if ($result) {
-                // Afficher les résultats
-                while ($row = pg_fetch_assoc($result)) {
-                    echo "<p>Date du service : " . $row['dateservice'] . "</p>";
-                    echo "<p>Nom du service : " . $row['nomservice'] . "</p>";
-                    echo "<p>Compétence requise : " . $row['compétencerequise'] . "</p>";
-                }
-            } else {
-                echo '<p class="erreur">Erreur lors de l\'exécution de la requête.</p>';
+        // Exécution de la requête préparée
+        $result = pg_query_params($conn, $query, array($categorie));
+        
+        // Vérifier si la requête a réussi
+        if ($result) {
+            // Afficher les résultats
+            while ($row = pg_fetch_assoc($result)) {
+?>
+                <div class="Service proposé">
+                    <p>Nom du service : <?php echo $row['NomService']; ?></p>
+                    <p>Date du service : <?php echo $row['DateService']; ?></p>
+                    <p>Compétence requise : <?php echo $row['CompétenceRequise']; ?></p>
+                </div>
+<?php
             }
+        } else {
+            echo '<p>Il n existe pas d\'annonces correspondant à votre demande</p>';
         }
     }
+}
 ?>
-
-
 
 
 <!DOCTYPE html>
