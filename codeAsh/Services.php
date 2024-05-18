@@ -1,48 +1,45 @@
 <?php
 session_start(); // Démarrer la session
 
-// Connexion à la base de données PostgreSQL
-$conn_str = "host=your_host dbname=your_db user=your_user password=your_password"; // Remplacez les valeurs par les vôtres
+$host = 'localhost';
+$db = 'SkillSolidarity';
+$user = 'postgres';
+$pass = 'mfp98x'; // Remplacez par votre mot de passe
+$port = '5432';
+$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 $conn = pg_connect($conn_str);
 
 if (!$conn) {
     // Afficher un message si la connexion échoue
-    echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
+    $error_message = 'Erreur de connexion à la base de données.';
 } else {
     // Afficher un message si la connexion réussit
-    echo '<p>Connexion à la base de données réussie.</p>';
+    $success_message = 'Connexion à la base de données réussie.';
 
-    // Vérifier si un bouton a été cliqué et si la catégorie est définie
-    if(isset($_POST['categorie'])) { //Cette condition vérifie si un formulaire a été soumis avec un champ nommé "categorie"
-        
+    // Vérifier si un formulaire a été soumis et si la catégorie est définie
+    if (isset($_POST['categorie'])) {
+        $categorie = $_POST['categorie'];
 
         // Requête SQL pour récupérer les informations en utilisant une requête préparée
-        // Cette ligne définit la requête SQL à exécuter. Elle récupère les informations des services où la catégorie correspond à la valeur soumise dans le formulaire
-        $query = "SELECT \"DateService\", \"NomService\", \"CompétenceRequise\" FROM public.\"Service\" WHERE upper(\"Categorie\") = upper($1)";
-        
+        $query = 'SELECT "DateService", "NomService", "CompétenceRequise" FROM public."Service" WHERE upper("Categorie") = upper($1)';
+
         // Exécution de la requête préparée
         $result = pg_query_params($conn, $query, array($categorie));
-        
+
         // Vérifier si la requête a réussi
         if ($result) {
-            //Cette boucle parcourt les résultats de la requête et affiche les détails de chaque service.
+            // Initialiser un tableau pour stocker les résultats
+            $services = [];
+            // Parcourir les résultats de la requête et stocker les détails de chaque service
             while ($row = pg_fetch_assoc($result)) {
-?>
-                <div class="Service proposé">
-                    <p>Nom du service : <?php echo $row['NomService']; ?></p>
-                    <p>Date du service : <?php echo $row['DateService']; ?></p>
-                    <p>Compétence requise : <?php echo $row['CompétenceRequise']; ?></p>
-                </div>
-
-<?php // Ces balises PHP sont utilisées pour insérer dynamiquement les valeurs des colonnes de la base de données dans le HTML qui sera renvoyé au navigateur.
+                $services[] = $row;
             }
         } else {
-            echo '<p>Il n existe pas d\'annonces correspondant à votre demande</p>';
+            $no_results_message = 'Il n\'existe pas d\'annonces correspondant à votre demande.';
         }
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -52,23 +49,44 @@ if (!$conn) {
     <title>Résultat de recherche</title>
     <link rel="stylesheet" href="css/Services.css">
 </head>
-
 <body>
-    <?php include 'Header_profile.html';?>
+    <?php include 'Header_profile.php'; ?>
     <div class="container">
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <form method="POST" action="">
             <ul class="options">
-                <li><button class="button" onclick="afficherAnnonces('JARDINAGE')">Jardinage</button></li>
-                <li><button class="button" onclick="afficherAnnonces('PLOMBERIE')">Plomberie</button></li>
-                <li><button class="button" onclick="afficherAnnonces('MENAGE')">Ménage</button></li>
-                <li><button class="button" onclick="afficherAnnonces('PEINTURE')">Peinture</button></li>
-                <li><button class="button" onclick="afficherAnnonces('MECANIQUE')">Mécanique</button></li>
-                <li><button class="button" onclick="afficherAnnonces('DEMENAGEMENT')">Déménagement</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Travaux">Travaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Entretien">Entretien</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Animaux">Animaux</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Bricolage">Bricolage</button></li>
+                <li><button class="button" type="submit" name="categorie" value="Aide à domicile">Aide à domicile</button></li>
+ 
+  
             </ul>
         </form>
+
+        <?php
+        // Afficher les messages de succès ou d'erreur
+        if (isset($error_message)) {
+            echo '<p class="erreur">' . htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8') . '</p>';
+        } elseif (isset($success_message)) {
+            echo '<p>' . htmlspecialchars($success_message, ENT_QUOTES, 'UTF-8') . '</p>';
+        }
+
+        // Afficher les résultats de la recherche si des services sont trouvés
+        if (isset($services) && count($services) > 0) {
+            foreach ($services as $service) {
+                echo '<div class="service-propose">';
+                echo '<p>Nom du service : ' . htmlspecialchars($service['NomService'], ENT_QUOTES, 'UTF-8') . '</p>';
+                echo '<p>Date du service : ' . htmlspecialchars($service['DateService'], ENT_QUOTES, 'UTF-8') . '</p>';
+                echo '<p>Compétence requise : ' . htmlspecialchars($service['CompétenceRequise'], ENT_QUOTES, 'UTF-8') . '</p>';
+                echo '</div>';
+            }
+        } elseif (isset($no_results_message)) {
+            echo '<p>' . htmlspecialchars($no_results_message, ENT_QUOTES, 'UTF-8') . '</p>';
+        }
+        ?>
     </div>
 </body>
 </html>
-
