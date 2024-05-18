@@ -38,6 +38,14 @@ CREATE TABLE IF NOT EXISTS "Competence" (
     CategorieCompetence VARCHAR(50)
 );
 
+-- Table Contact
+CREATE TABLE contact_form (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    message TEXT
+);
+
 -- Table Offrir
 CREATE TABLE IF NOT EXISTS "Offrir" (
     IDService VARCHAR(50),
