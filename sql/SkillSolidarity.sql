@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS "Service" (
     NomService VARCHAR(50) NOT NULL CHECK (NomService ~ '^[A-Za-z ]+$'),
     Description_optionnel_ VARCHAR(150),
     Categorie VARCHAR(50) NOT NULL CHECK (upper(Categorie) IN ('JARDINAGE', 'PLOMBERIE', 'MENAGE', 'PEINTURE', 'MECANIQUE', 'DEMENAGEMENT')),
-    DateService TIMESTAMP NOT NULL
+    DateService TIMESTAMP NOT NULL,
+    DureeService TIME NOT NULL
 );
 
 -- Table Avis
@@ -98,10 +99,10 @@ INSERT INTO "Competence" (IDCompetence, NomCompetence, Niveau) VALUES
 ('C3', 'Programmation', 'Expert');
 
 -- Insertion de données dans la table Service
-INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService) VALUES
-('S1', 'Tondre la pelouse', 'Tondre la pelouse du jardin', 'JARDINAGE', '2023-05-15 09:00:00'),
-('S2', 'Nettoyer la maison', 'Nettoyage complet de la maison', 'MENAGE', '2023-05-20 10:00:00'),
-('S3', 'Peinture', 'Réalisation de peintures intérieures de tout type', 'PEINTURE', '2023-06-01 09:00:00');
+INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
+('S1', 'Tondre la pelouse', 'Tondre la pelouse du jardin', 'JARDINAGE', '2023-05-15 09:00:00', '02:30:00'),
+('S2', 'Nettoyer la maison', 'Nettoyage complet de la maison', 'MENAGE', '2023-05-20 10:00:00', '01:00:00'),
+('S3', 'Peinture', 'Réalisation de peintures intérieures de tout type', 'PEINTURE', '2023-06-01 09:00:00', '04:00:00');
 
 -- Insertion de données dans la table Avis
 INSERT INTO "Avis" (IDAvis, Note, Commentaire, DateAvis, IDUtilisateur, IDService) VALUES
