@@ -1,10 +1,22 @@
 <?php
+session_start(); // Démarrer la session
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    echo "Vous devez être connecté pour accéder à cette page.";
+    exit;
+}
+
+// Récupérer l'identifiant de l'utilisateur connecté
+$user_id = $_SESSION['user_id'];
+
 // Database connection settings
 $host = 'localhost';
-$dbname = 'Skillsolidarity';
+$dbname = 'Final';
 $user = 'postgres';
-$password = '123';
+$password = 'amira';
 $port = '5432'; // default port for PostgreSQL, change if different
+
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 // Function to connect to the database
@@ -32,12 +44,11 @@ if ($conn) {
     // Define the query to fetch user data
     $user_query = "
     SELECT * FROM public.\"Utilisateur\"
-    WHERE \"idutilisateur\" = 'user001';
+    WHERE \"idutilisateur\" = '$user_id';
     ";
 
     // Execute the query to fetch user data
     $user_result = pg_query($conn, $user_query);
-    
 
     // Check if the user query was successful
     if ($user_result) {
@@ -55,7 +66,7 @@ if ($conn) {
     SELECT s.*, o.\"dateservice\" as \"date_service\"
     FROM public.\"Service\" s
     JOIN public.\"Offrir\" o ON s.\"idservice\" = o.\"idservice\"
-    WHERE o.\"idutilisateur\" = 'user001';
+    WHERE o.\"idutilisateur\" = '$user_id';
     ";
 
     // Execute the query to fetch reservations
@@ -76,6 +87,7 @@ if ($conn) {
     $error_message = "Failed to connect to the database.";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -88,8 +100,8 @@ if ($conn) {
 <body>
 <?php include 'Header_profile.php'; ?>
 <div class="main-content">
+  <h1 class="user-name"><?php echo isset($user_info) ? htmlspecialchars($user_info['nomu']) . ' ' . htmlspecialchars($user_info['prénomu']) : 'Nom Prénom'; ?></h1>
   <div class="profile-container">
-    <h1><?php echo isset($user_info) ? htmlspecialchars($user_info['nomu']) . ' ' . htmlspecialchars($user_info['prénomu']) : 'Nom Prénom'; ?></h1>
     <div class="info-box">
       <div class="info-title">Adresse mail :</div>
       <div class="info-content"><?php echo isset($user_info) ? htmlspecialchars($user_info['emailu']) : 'email@example.com'; ?></div>

@@ -1,29 +1,25 @@
 <?php
 session_start(); // Démarrer la session
-
 $host = 'localhost';
-$db = 'Skillsolidarity';
+$dbname = 'Final';
 $user = 'postgres';
-$pass = 'mfp98x'; // Remplacez par votre mot de passe !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$port = '5432';
-$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
+$password = 'amira';
+$port = '5432'; // default port for PostgreSQL, change if different
+$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 if (isset($_POST['connect'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Connexion à la base de données PostgreSQL
-    $conn = pg_connect($conn_str);
+    $conn = pg_connect($connection_string);
 
     if (!$conn) {
         // Afficher un message si la connexion échoue
         echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
     } else {
-        // Afficher un message si la connexion réussit
-        echo '<p>Connexion à la base de données réussie.</p>';
-
         // Préparation et exécution de la requête pour vérifier l'email et le mot de passe
-        $result = pg_prepare($conn, "my_query", 'SELECT "motdepasseu" FROM public."Utilisateur" WHERE "emailu" = $1');
+        $result = pg_prepare($conn, "my_query", 'SELECT "idutilisateur", "motdepasseu" FROM public."Utilisateur" WHERE "emailu" = $1');
         if (!$result) {
             echo '<p class="erreur">Erreur lors de la préparation de la requête.</p>';
         } else {
@@ -33,10 +29,10 @@ if (isset($_POST['connect'])) {
             } else {
                 $user = pg_fetch_assoc($result);
                 if ($user && $password === $user['motdepasseu']) {
-                    // Afficher un message si le mot de passe est correct
+                    // Stocker l'identifiant de l'utilisateur dans la session
+                    $_SESSION['user_id'] = $user['idutilisateur'];
                     echo '<p>Connexion réussie. Redirection en cours...</p>';
                     // Redirection si le mot de passe est correct
-                    echo '<p>TEST TEST ERROR</p>';
                     header("Location: mon_profil_1.php");
                     exit;
                 } else {
@@ -51,6 +47,7 @@ if (isset($_POST['connect'])) {
     pg_close($conn);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">

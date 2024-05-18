@@ -13,16 +13,12 @@
         <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <ul class="options">
-            <li><button class="button" onclick="afficherAnnonces('Travaux')">Travaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Entretien')">Entretien</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Animaux')">Animaux</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Bricolage')">Bricolage</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Automobile')">Automobile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Services Informatiques')">Services Informatiques</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Cours Particuliers/ Education')">Cours Particuliers/ Education</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Aide à domicile')">Aide à domicile</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Assistance administrative')">Assistance administrative</button></li>
-            <li><button class="button" onclick="afficherAnnonces('Coaching/Conseils')">Coaching/Conseils</button></li>
+            <li><button class="button" onclick="afficherAnnonces('JARDINAGE')">Jardinage</button></li>
+            <li><button class="button" onclick="afficherAnnonces('PLOMBERIE')">Plomberie</button></li>
+            <li><button class="button" onclick="afficherAnnonces('MENAGE')">Ménage</button></li>
+            <li><button class="button" onclick="afficherAnnonces('PEINTURE')">Peinture</button></li>
+            <li><button class="button" onclick="afficherAnnonces('MECANIQUE')">Mécanique</button></li>
+            <li><button class="button" onclick="afficherAnnonces('DEMENAGEMENT')">Déménagement</button></li>
         </ul>
 
         <div id="annonces"></div>
@@ -48,7 +44,7 @@
     $host = 'localhost';
     $db = 'SkillSoly';
     $user = 'postgres';
-    $pass = '016979B558@y';
+    $pass = 'mfp98x';
     $port = '5432';
     $connection_string = "host=$host port=$port dbname=$db user=$user password=$pass";
 
