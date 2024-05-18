@@ -13,10 +13,11 @@ if (!$conn) {
     echo '<p>Connexion à la base de données réussie.</p>';
 
     // Vérifier si un bouton a été cliqué et si la catégorie est définie
-    if(isset($_POST['categorie'])) {
-        $categorie = pg_escape_string($_POST['categorie']);
+    if(isset($_POST['categorie'])) { //Cette condition vérifie si un formulaire a été soumis avec un champ nommé "categorie"
+        
 
         // Requête SQL pour récupérer les informations en utilisant une requête préparée
+        // Cette ligne définit la requête SQL à exécuter. Elle récupère les informations des services où la catégorie correspond à la valeur soumise dans le formulaire
         $query = "SELECT \"DateService\", \"NomService\", \"CompétenceRequise\" FROM public.\"Service\" WHERE upper(\"Categorie\") = upper($1)";
         
         // Exécution de la requête préparée
@@ -24,7 +25,7 @@ if (!$conn) {
         
         // Vérifier si la requête a réussi
         if ($result) {
-            // Afficher les résultats
+            //Cette boucle parcourt les résultats de la requête et affiche les détails de chaque service.
             while ($row = pg_fetch_assoc($result)) {
 ?>
                 <div class="Service proposé">
@@ -32,7 +33,8 @@ if (!$conn) {
                     <p>Date du service : <?php echo $row['DateService']; ?></p>
                     <p>Compétence requise : <?php echo $row['CompétenceRequise']; ?></p>
                 </div>
-<?php
+
+<?php // Ces balises PHP sont utilisées pour insérer dynamiquement les valeurs des colonnes de la base de données dans le HTML qui sera renvoyé au navigateur.
             }
         } else {
             echo '<p>Il n existe pas d\'annonces correspondant à votre demande</p>';
