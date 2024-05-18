@@ -4,33 +4,52 @@ session_start(); // Démarrer la session
 $host = 'localhost';
 $db = 'SkillSolidarity';
 $user = 'postgres';
-$pass = '********';
+$pass = 'mfp98x'; // Remplacez par votre mot de passe
 $port = '5432';
-$dsn = "pgsql:host=$host;port=$port;dbname=$db";
+$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
+
+
 
 if (isset($_POST['connect'])) {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    try {
-        $pdo = new PDO($dsn, $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Connexion à la base de données PostgreSQL
+    $conn = pg_connect($conn_str);
 
-        $sql = "SELECT Userpassword FROM Utilisateur WHERE Pseudonyme = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user && $password === $user['userpassword']) {
-            // Redirection si le mot de passe est correct
-            header("Location: Accueil_Utilisateur.php");
-            exit;
+    if (!$conn) {
+        // Afficher un message si la connexion échoue
+        echo '<p class="erreur">Erreur de connexion à la base de données.</p>';
+    } else {
+        // Afficher un message si la connexion réussit
+        echo '<p>Connexion à la base de données réussie.</p>';
+
+        // Préparation et exécution de la requête pour vérifier l'email et le mot de passe
+        $result = pg_prepare($conn, "my_query", "SELECT MotDePasseU FROM Utilisateur WHERE EmailU = $1");
+        if (!$result) {
+            echo '<p class="erreur">Erreur lors de la préparation de la requête.</p>';
         } else {
-            // Affichage d'un message d'erreur si le mot de passe ou le nom d'utilisateur est incorrect
-            echo '<p class="erreur">Username ou password incorrect</p>';
+            $result = pg_execute($conn, "my_query", array($email));
+            if (!$result) {
+                echo '<p class="erreur">Erreur lors de l\'exécution de la requête.</p>';
+            } else {
+                $user = pg_fetch_assoc($result);
+                if ($user && $password === $user['motdepasseu']) {
+                    // Afficher un message si le mot de passe est correct
+                    echo '<p>Connexion réussie. Redirection en cours...</p>';
+                    // Redirection si le mot de passe est correct
+                    header("Location: mon_profil_1.php");
+                    exit;
+                } else {
+                    // Affichage d'un message d'erreur si le mot de passe ou l'email est incorrect
+                    echo '<p class="erreur">Email ou mot de passe incorrect.</p>';
+                }
+            }
         }
-    } catch (PDOException $e) {
-        $error = "Erreur de connexion à la base de données : " . $e->getMessage();
     }
+
+    // Fermeture de la connexion
+    pg_close($conn);
 }
 ?>
 
@@ -70,7 +89,7 @@ if (isset($_POST['connect'])) {
                 <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-                <input type="submit" value="Se connecter">
+                <input type="submit" value="Se connecter" name="connect">
             </form>
             <div class="separator" style="border-top: 1px solid #ccc; margin: 10px 0;"></div>
             <button class="btn-create-account">Créer un compte</button>
@@ -104,4 +123,3 @@ if (isset($_POST['connect'])) {
     </footer>
 </body>
 </html>
-
