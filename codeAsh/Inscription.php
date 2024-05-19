@@ -26,18 +26,17 @@
 <img class="image-gauche" src="images/inscription.jpg">
 
 <?php include 'Footer_mode_connecte.html'; ?>
+
 </body>
 </html>
-
-
 
 <?php
 session_start(); // Démarrer la session
 
 $host = 'localhost';
-$db = 'nom_BD';
-$user = 'postgres';
-$pass = 'MDP';
+$db = 'nom_BD'; // Nom de votre base de données
+$user = 'postgres'; // Nom d'utilisateur de la base de données
+$pass = 'MDP'; // Mot de passe de la base de données
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
@@ -49,24 +48,29 @@ if (!$conn) {
     exit;
 }
 
-// Récupération des données du formulaire
-$nom = pg_escape_string($_POST['nom_utilisateur']);
-$mail = pg_escape_string($_POST['mail']);
-$password = pg_escape_string($_POST['mot_de_passe']);
+// Vérification des données POST
+if(isset($_POST['nom_utilisateur']) && isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
+    // Récupération des données du formulaire
+    $nom = pg_escape_string($_POST['nom_utilisateur']);
+    $mail = pg_escape_string($_POST['mail']);
+    $password = pg_escape_string($_POST['mot_de_passe']);
 
-// Requête SQL pour insérer les données dans la table
-$sql = "INSERT INTO Utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
+    // Requête SQL pour insérer les données dans la table
+    $sql = "INSERT INTO Utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
 
-// Exécution de la requête
-$result = pg_query($conn, $sql);
+    // Exécution de la requête
+    $result = pg_query($conn, $sql);
 
-if ($result) {
-    // Redirection vers une autre page en cas de succès
-    header("Location: Page_connexion.php");
-    exit;
+    if ($result) {
+        // Redirection vers une autre page en cas de succès
+        header("Location: Page_connexion.php");
+        exit;
+    } else {
+        // En cas d'échec, affichage d'un message d'erreur
+        echo "Erreur lors de l'inscription.";
+    }
 } else {
-    // En cas d'échec, affichage d'un message d'erreur
-    echo "Erreur lors de l'inscription.";
+    echo "Tous les champs sont requis.";
 }
 
 // Fermeture de la connexion à la base de données
