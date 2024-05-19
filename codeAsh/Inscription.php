@@ -56,7 +56,7 @@ $mail = pg_escape_string($_POST['mail']);
 $password = pg_escape_string($_POST['mot_de_passe']);
 
 // Requête SQL pour insérer les données dans la table
-$sql = "INSERT INTO utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
+$sql = "INSERT INTO Utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
 
 // Exécution de la requête
 $result = pg_query($conn, $sql);

@@ -1,6 +1,6 @@
 <?php
 session_start(); // Démarrer la session
-
+ 
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
 $dbname = 'Site';
@@ -121,7 +121,7 @@ if (!$conn) {
 <body>
     <?php include 'Header_profile.php';?>
     <div class="container">
-        <h1>Résultats de recherche</h1>
+        <h1>Résultat de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <form method="POST" action="">
             <ul class="options">
@@ -151,13 +151,13 @@ if (!$conn) {
                                 $image_url = 'images/jardinage.jpg';
                                 break;
                             case 'MENAGE':
-                                $image_url = 'images/ménage.jpg';
+                                $image_url = 'images/menage.jpg';
                                 break;
                             case 'PEINTURE':
                                 $image_url = 'images/peinture.jpg';
                                 break;
                             case 'MECANIQUE':
-                                $image_url = 'images/mécanique.jpg';
+                                $image_url = 'images/mecanique.jpg';
                                 break;
                             case 'DEMENAGEMENT':
                                 $image_url = 'images/demenagement.jpg';
