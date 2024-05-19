@@ -1,7 +1,7 @@
 <?php
 session_start(); // Démarrer la session
 $host = 'localhost';
-$dbname = 'Site';
+$dbname = 'Sitee';
 $user = 'postgres';
 $password = 'amira';
 $port = '5432'; // default port for PostgreSQL, change if different
