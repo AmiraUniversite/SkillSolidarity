@@ -48,7 +48,7 @@
 session_start(); // Démarrer la session
 $host = "localhost";
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "SkillSolidarity";
+$dbname = "Skillsolidarity";
 $user = "postgres";
 $password = "mfp98x";
 
@@ -60,19 +60,16 @@ if (!$conn) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre = $_POST['titre'];
-    $categorie = strtoupper($_POST['categorie']);
-    $expertise = strtoupper($_POST['expertise']);
+    $categorie = str_replace('é','E',(strtoupper($_POST['categorie'])));
+    $expertise = str_replace('é','E',(strtoupper($_POST['expertise'])));
     $date = $_POST['date'];
     $heure = $_POST['heure'];
     $duree = $_POST['duree'];
     $description = $_POST['description'];
 
-
-    // Générer un IDService unique de la forme "S" suivi d'un chiffre unique
-    $idService = "S" . );
     $dateService = $date . ' ' . $heure . ':00';
 
-    $sql = "INSERT INTO public.\"Service\" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES ('$idService', '$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
+    $sql = "INSERT INTO public.\"Service\" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES ('15', '$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
     $result = pg_query($conn, $sql);
     if ($result) {
         // Affichage d'un message en cas de succès
