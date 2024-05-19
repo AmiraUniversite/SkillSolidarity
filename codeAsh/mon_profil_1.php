@@ -116,9 +116,7 @@ if ($conn) {
 } else {
     $error_message = "Échec de la connexion à la base de données.";
 }
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -182,6 +180,37 @@ if ($conn) {
 .form-review button:hover {
   background-color: #FF7F00;
 }
+
+/* Styles pour centrer le message et l'image */
+.no-reservations {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-reservations img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Styles pour un footer plus petit */
+footer {
+  padding: 50 px ;
+  background-color: #f1f1f1;
+  text-align: center;
+  font-size: 0.9em;
+  color: #333;
+}
+
+footer a {
+  color: #333;
+  text-decoration: none;
+  margin: 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -227,69 +256,75 @@ if ($conn) {
   </div>
   <div class="reservations-title">Mes réservations</div>
   <div class="reservations-container">
-    <?php if (count($upcoming_reservations) > 0): ?>
-      <h2>Services à venir</h2>
-      <?php foreach ($upcoming_reservations as $reservation): ?>
-        <div class="reservation-card">
-          <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
-          <div class="reservation-details">
-            <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
-            <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
-            <p><?php echo date('H:i', strtotime($reservation['date_service'])); ?></p>
-            <?php if ($reservation['note']): ?>
-              <p>Note: <?php echo str_repeat('★', $reservation['note']) . str_repeat('☆', 5 - $reservation['note']); ?></p>
-              <p>Commentaire: <?php echo htmlspecialchars($reservation['commentaire']); ?></p>
-            <?php endif; ?>
+    <?php if (count($upcoming_reservations) > 0 || count($past_reservations) > 0): ?>
+      <?php if (count($upcoming_reservations) > 0): ?>
+        <h2>Services à venir</h2>
+        <?php foreach ($upcoming_reservations as $reservation): ?>
+          <div class="reservation-card">
+            <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+            <div class="reservation-details">
+              <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
+              <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
+              <p><?php echo date('H:i', strtotime($reservation['date_service'])); ?></p>
+              <?php if ($reservation['note']): ?>
+                <p>Note: <?php echo str_repeat('★', $reservation['note']) . str_repeat('☆', 5 - $reservation['note']); ?></p>
+                <p>Commentaire: <?php echo htmlspecialchars($reservation['commentaire']); ?></p>
+              <?php endif; ?>
+            </div>
+            <div class="reservation-status">
+              <p class="status-upcoming">Arrive bientôt</p>
+            </div>
           </div>
-          <div class="reservation-status">
-            <p class="status-upcoming">Arrive bientôt</p>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    <?php endif; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
 
-    <?php if (count($past_reservations) > 0): ?>
-      <h2>Services terminés</h2>
-      <?php foreach ($past_reservations as $reservation): ?>
-        <div class="reservation-card">
-          <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
-          <div class="reservation-details">
-            <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
-            <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
-            <p><?php echo date('H:i', strtotime($reservation['date_service'])); ?></p>
-            <?php if ($reservation['note']): ?>
-              <p>Note: <?php echo str_repeat('★', $reservation['note']) . str_repeat('☆', 5 - $reservation['note']); ?></p>
-              <p>Commentaire: <?php echo htmlspecialchars($reservation['commentaire']); ?></p>
-            <?php endif; ?>
+      <?php if (count($past_reservations) > 0): ?>
+        <h2>Services terminés</h2>
+        <?php foreach ($past_reservations as $reservation): ?>
+          <div class="reservation-card">
+            <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+            <div class="reservation-details">
+              <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
+              <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
+              <p><?php echo date('H:i', strtotime($reservation['date_service'])); ?></p>
+              <?php if ($reservation['note']): ?>
+                <p>Note: <?php echo str_repeat('★', $reservation['note']) . str_repeat('☆', 5 - $reservation['note']); ?></p>
+                <p>Commentaire: <?php echo htmlspecialchars($reservation['commentaire']); ?></p>
+              <?php endif; ?>
+            </div>
+            <div class="reservation-status">
+              <p class="status-completed">Terminé</p>
+              <?php if (!$reservation['note']): ?>
+                <form class="form-review" action="donner_avis.php" method="POST">
+                  <input type="hidden" name="idservice" value="<?php echo htmlspecialchars($reservation['idservice']); ?>">
+                  <input type="hidden" name="idutilisateur" value="<?php echo htmlspecialchars($user_id); ?>">
+                  <label for="note">Note:</label>
+                  <select name="note" id="note">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <br>
+                  <label for="commentaire">Commentaire:</label>
+                  <textarea name="commentaire" id="commentaire" rows="3"></textarea>
+                  <br>
+                  <button type="submit">Donner un avis</button>
+                </form>
+              <?php endif; ?>
+            </div>
           </div>
-          <div class="reservation-status">
-            <p class="status-completed">Terminé</p>
-            <?php if (!$reservation['note']): ?>
-              <form class="form-review" action="donner_avis.php" method="POST">
-                <input type="hidden" name="idservice" value="<?php echo htmlspecialchars($reservation['idservice']); ?>">
-                <input type="hidden" name="idutilisateur" value="<?php echo htmlspecialchars($user_id); ?>">
-                <label for="note">Note:</label>
-                <select name="note" id="note">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <br>
-                <label for="commentaire">Commentaire:</label>
-                <textarea name="commentaire" id="commentaire" rows="3"></textarea>
-                <br>
-                <button type="submit">Donner un avis</button>
-              </form>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    <?php else: ?>
+      <div class="no-reservations">
+        <p>Vous n'avez aucune réservation pour le moment...</p>
+        <img src="images/no_reservation.jpg" alt="No Reservations">
+      </div>
     <?php endif; ?>
   </div>
 </div>
 <?php include 'Footer_mode_connecte.html'; ?>
 </body>
 </html>
-
