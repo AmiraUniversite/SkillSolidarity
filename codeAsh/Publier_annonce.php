@@ -19,7 +19,7 @@
             </label>
             <label for="categorie">
                 <span>Catégorie</span>
-                <input name="categorie" type="text" id="categorie" placeholder="&#x1F4C4;">
+                <input name="categorie" type="text" id="categorie" placeholder="Jardinage/Plomberie/Ménage/Peinture/Mécanique/Déménagement">
             </label>
             <label for="expertise">
                 <span>Niveau d'expertise</span>
@@ -61,6 +61,7 @@ if (!$conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre = $_POST['titre'];
     $categorie = strtoupper($_POST['categorie']);
+    $expertise = strtoupper($_POST['expertise']);
     $date = $_POST['date'];
     $heure = $_POST['heure'];
     $duree = $_POST['duree'];
