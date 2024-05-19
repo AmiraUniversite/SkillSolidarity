@@ -3,10 +3,10 @@ session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$dbname = 'sks';
+$dbname = 'nom_BD';
 $user = 'postgres';
-$password = '016979B558@y';
-$port = '5433'; // default port for PostgreSQL, change if different
+$password = 'MDP';
+$port = '5432'; // default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 $conn = pg_connect($connection_string);

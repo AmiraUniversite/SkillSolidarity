@@ -12,10 +12,10 @@ $user_id = $_SESSION['user_id'];
 
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'sks';
+$dbname = 'nom_BD';
 $user = 'postgres';
-$password = '016979B558@y';
-$port = '5433'; // port par défaut pour PostgreSQL, à changer si nécessaire
+$password = 'MDP';
+$port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
