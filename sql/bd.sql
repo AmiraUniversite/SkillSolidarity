@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS "Utilisateur" (
 CREATE TABLE IF NOT EXISTS "Service" (
     IDService VARCHAR(50) PRIMARY KEY,
     NomService VARCHAR(50) NOT NULL CHECK (NomService ~ '^[A-Za-z ]+$'),
-    NiveauService VARCHAR(50) NOT NULL CHECK (upper(Categorie) IN ('DEBUTANT','INTERMEDIARE','EXPERT')),
+    NiveauService VARCHAR(50) NOT NULL CHECK (NiveauService IN ('DEBUTANT', 'INTERMEDIARE', 'EXPERT')),
     Description_optionnel_ VARCHAR(150),
-    Categorie VARCHAR(50) NOT NULL CHECK (upper(Categorie) IN ('JARDINAGE', 'PLOMBERIE', 'MENAGE', 'PEINTURE', 'MECANIQUE', 'DEMENAGEMENT')),
+    Categorie VARCHAR(50) NOT NULL CHECK (Categorie IN ('JARDINAGE', 'PLOMBERIE', 'MENAGE', 'PEINTURE', 'MECANIQUE', 'DEMENAGEMENT')),
     DateService TIMESTAMP NOT NULL,
     DureeService TIME NOT NULL
 );
@@ -107,10 +107,10 @@ INSERT INTO "Competence" (IDCompetence, NomCompetence, Niveau) VALUES
 ('C3', 'Programmation', 'Expert');
 
 -- Insertion de données dans la table Service
-INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
-('S1', 'Tondre la pelouse', 'Tondre la pelouse du jardin', 'JARDINAGE', '2023-05-15 09:00:00', '02:30:00'),
-('S2', 'Nettoyer la maison', 'Nettoyage complet de la maison', 'MENAGE', '2023-05-20 10:00:00', '01:00:00'),
-('S3', 'Peinture', 'Réalisation de peintures intérieures de tout type', 'PEINTURE', '2023-06-01 09:00:00', '04:00:00');
+INSERT INTO "Service" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
+('S1', 'Tondre la pelouse','DEBUTANT','Tondre la pelouse du jardin', 'JARDINAGE', '2023-05-15 09:00:00', '02:30:00'),
+('S2', 'Nettoyer la maison','INTERMEDIARE', 'Nettoyage complet de la maison', 'MENAGE', '2023-05-20 10:00:00', '01:00:00'),
+('S3', 'Peinture', 'EXPERT', 'Réalisation de peintures intérieures de tout type', 'PEINTURE', '2023-06-01 09:00:00', '04:00:00');
 
 -- Insertion de données dans la table Avis
 INSERT INTO "Avis" (Note, Commentaire, DateAvis, IDUtilisateur, IDService) VALUES
@@ -151,19 +151,19 @@ ALTER TABLE "Service" DROP CONSTRAINT IF EXISTS "Service_nomservice_check";
 ALTER TABLE "Service" ADD CONSTRAINT "Service_nomservice_check" CHECK (NomService ~ '^[A-Za-zÀ-ÿ ]+$');
 
 -- Ajouter un service supplémentaire
-INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
-('S8', 'Remplacement de toiture', 'Remplacement complet de la toiture', 'MECANIQUE', '2024-05-01 08:00:00', '08:00:00');
+INSERT INTO "Service" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
+('S8', 'Remplacement de toiture','EXPERT', 'Remplacement complet de la toiture', 'MECANIQUE', '2024-05-01 08:00:00', '08:00:00');
 
 -- Ajouter les services existants
 -- Services terminés
-INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
-('S10', 'Reparation de la cloture', 'Réparation complète de la clôture du jardin', 'JARDINAGE', '2023-01-10 10:00:00', '03:00:00'),
-('S11', 'Installation de la plomberie', 'Installation de nouveaux tuyaux dans la cuisine', 'PLOMBERIE', '2023-02-15 08:00:00', '05:00:00');
+INSERT INTO "Service" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
+('S10', 'Reparation de la cloture' ,'DEBUTANT', 'Réparation complète de la clôture du jardin', 'JARDINAGE', '2023-01-10 10:00:00', '03:00:00'),
+('S11', 'Installation de la plomberie', 'DEBUTANT', 'Installation de nouveaux tuyaux dans la cuisine', 'PLOMBERIE', '2023-02-15 08:00:00', '05:00:00');
 
 -- Services à venir
-INSERT INTO "Service" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
-('S12', 'Peinture extérieure', 'Peinture des murs extérieurs ade la maison', 'PEINTURE', '2024-06-15 09:00:00', '06:00:00'),
-('S13', 'Nettoyage de printemps', 'Nettoyage complet de la maison pour le printemps', 'MENAGE', '2024-07-01 10:00:00', '04:00:00');
+INSERT INTO "Service" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES
+('S12', 'Peinture extérieure', 'DEBUTANT', 'Peinture des murs extérieurs ade la maison', 'PEINTURE', '2024-06-15 09:00:00', '06:00:00'),
+('S13', 'Nettoyage de printemps', 'DEBUTANT', 'Nettoyage complet de la maison pour le printemps', 'MENAGE', '2024-07-01 10:00:00', '04:00:00');
 
 -- Services terminés offerts par jean.dupont@example.com
 INSERT INTO "Offrir" (IDService, IDUtilisateur, DateService) VALUES
