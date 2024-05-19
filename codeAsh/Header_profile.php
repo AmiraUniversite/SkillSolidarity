@@ -16,7 +16,7 @@
     <div class="nav-links">
         <a href="./Page_Acceuil/index.php">Accueil</a>
         <a href="./Services.php">Rechercher</a>
-        <a href="../code/Publier_annonce.php">Demander</a>
+        <a href="./Publier_annonce.php">Demander</a>
     </div>
     <div class="right-links">
         <button>Profile</button>

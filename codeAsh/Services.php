@@ -3,9 +3,9 @@ session_start(); // Démarrer la session
  
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$dbname = 'Sitee';
+$dbname = 'Skillsolidarity';
 $user = 'postgres';
-$password = 'amira';
+$password = 'mfp98x';
 $port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
 
 $conn_str = "host=$host port=$port dbname=$dbname user=$user password=$password";

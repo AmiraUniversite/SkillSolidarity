@@ -14,7 +14,7 @@
   <div id="personal-info-section" class="signup-container">
     <h1 class="signup-title">Inscription</h1>
     <h3 class="information-title">Veuillez entrer vos informations</h3>
-    <form class="signup-form" id="personal-info-form" action="traitement_inscription.php" method="POST">
+    <form class="signup-form" id="personal-info-form" action="Page_connexion.php" method="POST">
       <input type="hidden" name="step" value="2">
       <input name="nom_utilisateur" type="text" placeholder="Nom d'utilisateur" required>
       <input name="mail" type="email" placeholder="Adresse mail" required>
@@ -56,13 +56,13 @@ if(isset($_POST['nom_utilisateur']) && isset($_POST['mail']) && isset($_POST['mo
     $password = pg_escape_string($_POST['mot_de_passe']);
 
     // Requête SQL pour insérer les données dans la table
-    $sql = "INSERT INTO Utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
+    $sql = "INSERT INTO public.\"Utilisateur\" (useru, emailu, motdepasseu) VALUES ('$nom', '$mail', '$password')";
 
     // Exécution de la requête
     $result = pg_query($conn, $sql);
 
     if ($result) {
-        // Redirection vers une autre page en cas de succès
+        // Redirection vers une autre page en cas de succès    
         header("Location: Page_connexion.php");
         exit;
     } else {
