@@ -69,10 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Générer un IDService unique de la forme "S" suivi d'un chiffre unique
-    $idService = "S" . uniqid();
+    $idService = "S" . );
     $dateService = $date . ' ' . $heure . ':00';
 
-    $sql = "INSERT INTO public.\"Service\" (IDService, NomService, Description_optionnel_, Categorie, DateService, DureeService) VALUES ('$idService', '$titre', '$description', '$categorie', '$dateService', '$duree')";
+    $sql = "INSERT INTO public.\"Service\" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES ('$idService', '$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
     $result = pg_query($conn, $sql);
     if ($result) {
         // Affichage d'un message en cas de succès
