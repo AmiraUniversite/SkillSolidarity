@@ -3,7 +3,7 @@ session_start(); // Démarrer la session
  
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$dbname = 'Site';
+$dbname = 'Sitee';
 $user = 'postgres';
 $password = 'amira';
 $port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
@@ -151,13 +151,13 @@ if (!$conn) {
                                 $image_url = 'images/jardinage.jpg';
                                 break;
                             case 'MENAGE':
-                                $image_url = 'images/menage.jpg';
+                                $image_url = 'images/ménage.jpg';
                                 break;
                             case 'PEINTURE':
                                 $image_url = 'images/peinture.jpg';
                                 break;
                             case 'MECANIQUE':
-                                $image_url = 'images/mecanique.jpg';
+                                $image_url = 'images/mécanique.jpg';
                                 break;
                             case 'DEMENAGEMENT':
                                 $image_url = 'images/demenagement.jpg';
