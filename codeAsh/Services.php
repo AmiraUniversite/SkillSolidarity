@@ -3,10 +3,10 @@ session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$dbname = 'Sitee';
+$dbname = 'sks';
 $user = 'postgres';
-$password = 'amira';
-$port = '5432'; // default port for PostgreSQL, change if different
+$password = '016979B558@y';
+$port = '5433'; // default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 $conn = pg_connect($connection_string);
@@ -188,7 +188,7 @@ if (!$conn) {
                 </div>
                 <div class="buttons-container">
                     <button class="details-button">Détails</button>
-                    <button class="reserve-button">Réserver</button>
+                    <a href="test.php?categorie=<?php echo urlencode($categorie); ?>&nomservice=<?php echo urlencode($row['nomservice']); ?>&dateservice=<?php echo urlencode($date_service->format('Y-m-d H:i:s')); ?>&dureeservice=<?php echo urlencode($row['dureeservice']); ?>&description=<?php echo urlencode($row['description_optionnel_']); ?>" class="reserve-button">Réserver</a>
                 </div>
             </div>
             <?php

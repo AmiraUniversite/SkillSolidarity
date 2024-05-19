@@ -12,12 +12,12 @@ $user_id = $_SESSION['user_id'];
 
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'Sitee';
+$dbname = 'sks';
 $user = 'postgres';
-$password = 'amira';
-$port = '5432'; // default port for PostgreSQL, change if different
-$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
+$password = '016979B558@y';
+$port = '5433'; // port par défaut pour PostgreSQL, à changer si nécessaire
 
+$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
 // Fonction pour se connecter à la base de données
 function connectDb() {
@@ -116,7 +116,22 @@ if ($conn) {
 } else {
     $error_message = "Échec de la connexion à la base de données.";
 }
-?><!DOCTYPE html>
+
+// Récupérer les données du formulaire de confirmation de réservation
+$new_reservation = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['categorie']) && isset($_POST['nomservice']) && isset($_POST['dateservice']) && isset($_POST['dureeservice']) && isset($_POST['description'])) {
+        $new_reservation = [
+            'categorie' => htmlspecialchars($_POST['categorie']),
+            'nomservice' => htmlspecialchars($_POST['nomservice']),
+            'dateservice' => htmlspecialchars($_POST['dateservice']),
+            'dureeservice' => htmlspecialchars($_POST['dureeservice']),
+            'description' => htmlspecialchars($_POST['description'])
+        ];
+    }
+}
+?>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -256,6 +271,22 @@ footer a:hover {
   </div>
   <div class="reservations-title">Mes réservations</div>
   <div class="reservations-container">
+    <?php if ($new_reservation): ?>
+      <h2>Nouvelle réservation</h2>
+      <div class="reservation-card">
+        <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+        <div class="reservation-details">
+          <h3><?php echo htmlspecialchars($new_reservation['nomservice']); ?></h3>
+          <p><strong><?php echo date('l, d M Y', strtotime($new_reservation['dateservice'])); ?></strong></p>
+          <p><?php echo htmlspecialchars($new_reservation['dureeservice']); ?> heures</p>
+          <p><?php echo htmlspecialchars($new_reservation['description']); ?></p>
+        </div>
+        <div class="reservation-status">
+          <p class="status-upcoming">Arrive bientôt</p>
+        </div>
+      </div>
+    <?php endif; ?>
+
     <?php if (count($upcoming_reservations) > 0 || count($past_reservations) > 0): ?>
       <?php if (count($upcoming_reservations) > 0): ?>
         <h2>Services à venir</h2>
