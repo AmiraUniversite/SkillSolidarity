@@ -13,13 +13,13 @@
 <div class="main-content">
   <div id="personal-info-section" class="signup-container">
     <h1 class="signup-title">Inscription</h1>
-    <h3 class="information-title"> Veuillez entrer vos informations</h3>
-    <form class="signup-form" id="personal-info-form" onsubmit="return moveToNextPage()">
+    <h3 class="information-title">Veuillez entrer vos informations</h3>
+    <form class="signup-form" id="personal-info-form" action="traitement_inscription.php" method="POST">
       <input type="hidden" name="step" value="2">
-      <input name="nom d'utilisateur" type="text" pattern="[A-Za-z]+" placeholder="Nom d'utilisateur" required>
+      <input name="nom_utilisateur" type="text" pattern="[A-Za-z]+" placeholder="Nom d'utilisateur" required>
       <input name="mail" type="text" pattern="[A-Za-z]+" placeholder="Adresse mail" required>
-      <input name="mot de passe" type="text" placeholder="Mot de passe" required>
-      <button type="submit-registration">Créer un compte</button>
+      <input name="mot_de_passe" type="text" placeholder="Mot de passe" required>
+      <button type="submit" name="submit-registration">Créer un compte</button>
     </form> 
   </div>
 </div>
@@ -29,8 +29,8 @@
 </body>
 </html>
 
-<?php
 
+<?php
 session_start(); // Démarrer la session
 
 $host = 'localhost';
@@ -71,6 +71,7 @@ if ($result) {
 // Fermeture de la connexion à la base de données
 pg_close($conn);
 ?>
+
 
 
 
