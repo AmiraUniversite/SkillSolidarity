@@ -30,9 +30,18 @@
 </html>
 
 <?php
-// Connexion à la base de données
-$conn = pg_connect("host=localhost dbname=nom_de_votre_base_de_donnees user=votre_nom_utilisateur password=votre_mot_de_passe");
 
+session_start(); // Démarrer la session
+
+$host = 'localhost';
+$db = 'nom_BD';
+$user = 'postgres';
+$pass = 'MDP'; // Remplacez par votre mot de passe
+$port = '5432';
+$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
+
+// Connexion à la base de données PostgreSQL
+$conn = pg_connect($conn_str);
 // Vérification de la connexion
 if (!$conn) {
     echo "Erreur de connexion à la base de données.";
@@ -40,19 +49,19 @@ if (!$conn) {
 }
 
 // Récupération des données du formulaire
-$username = pg_escape_string($_POST['nom_utilisateur']);
+$nom = pg_escape_string($_POST['nom_utilisateur']);
 $mail = pg_escape_string($_POST['mail']);
 $password = pg_escape_string($_POST['mot_de_passe']);
 
 // Requête SQL pour insérer les données dans la table
-$sql = "INSERT INTO votre_table (nom_utilisateur, mail, mot_de_passe) VALUES ('$username', '$mail', '$password')";
+$sql = "INSERT INTO utilisateur (UserU, EmailU, MotDePasseU) VALUES ('$nom', '$mail', '$password')";
 
 // Exécution de la requête
 $result = pg_query($conn, $sql);
 
 if ($result) {
     // Redirection vers une autre page en cas de succès
-    header("Location: autre_page.php");
+    header("Location: Page_connexion.php");
     exit;
 } else {
     // En cas d'échec, affichage d'un message d'erreur
