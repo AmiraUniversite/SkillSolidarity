@@ -7,7 +7,7 @@ $db = 'Nom_BD';
 $user = 'postgres';
 $pass = 'MDP'; // Remplacez par votre mot de passe
 $port = '5432';
-$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass"; // Remplacez les valeurs par les vôtres
+$conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 $conn = pg_connect($conn_str);
 
 if (!$conn) {
