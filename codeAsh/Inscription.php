@@ -26,70 +26,42 @@
 <img class="image-gauche" src="images/inscription.jpg">
 
 <?php include 'Footer_mode_connecte.html'; ?>
-
-<script>
-  function moveToNextPage() {
-    document.getElementById('personal-info-section').style.display = 'none';
-    document.getElementById('email-section').style.display = 'block';
-    return false; // Prevents form submission
-  }
-</script>
-
 </body>
 </html>
 
 <?php
-session_start(); // Démarrer la session
+// Connexion à la base de données
+$conn = pg_connect("host=localhost dbname=nom_de_votre_base_de_donnees user=votre_nom_utilisateur password=votre_mot_de_passe");
 
-// Paramètres de connexion à la base de données
-$host = 'localhost';
-$port = '5433';
-$dbname = 'SkillSoly';
-$user = 'postgres';
-$pass = '016979B558@y';
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
-
-try {
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion à la base de données: " . $e->getMessage());
+// Vérification de la connexion
+if (!$conn) {
+    echo "Erreur de connexion à la base de données.";
+    exit;
 }
 
-// Vérification si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Récupération et validation des données du formulaire
-    $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+// Récupération des données du formulaire
+$username = pg_escape_string($_POST['nom_utilisateur']);
+$mail = pg_escape_string($_POST['mail']);
+$password = pg_escape_string($_POST['mot_de_passe']);
 
-    // Validation supplémentaire
-    if ($password !== $confirm_password) {
-        die("Les mots de passe ne correspondent pas.");
-    }
+// Requête SQL pour insérer les données dans la table
+$sql = "INSERT INTO votre_table (nom_utilisateur, mail, mot_de_passe) VALUES ('$username', '$mail', '$password')";
 
-    // Hashage du mot de passe
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+// Exécution de la requête
+$result = pg_query($conn, $sql);
 
-    // Requête SQL INSERT pour insérer les données dans la table "utilisateur"
-    $requete = "INSERT INTO utilisateur (nomu, emailu, motdepasseu)
-                VALUES (:nom, :email, :motdepasse)";
-
-    $stmt = $pdo->prepare($requete);
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':motdepasse', $hashed_password);
-
-    // Exécution de la requête SQL
-    if ($stmt->execute()) {
-        echo "Inscription réussie.";
-    } else {
-        echo "Erreur lors de l'inscription.";
-    }
-
-    // Fermer la connexion à la base de données
-    $pdo = null;
+if ($result) {
+    // Redirection vers une autre page en cas de succès
+    header("Location: autre_page.php");
+    exit;
+} else {
+    // En cas d'échec, affichage d'un message d'erreur
+    echo "Erreur lors de l'inscription.";
 }
+
+// Fermeture de la connexion à la base de données
+pg_close($conn);
 ?>
+
 
 
