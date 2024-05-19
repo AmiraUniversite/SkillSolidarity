@@ -101,7 +101,7 @@ label input, label textarea {
 }
 
 label input::placeholder, label textarea::placeholder {
-    font-size: 16px;
+    font-size: 13.5px;
     font-family: monospace;
     color: #000000;
 }
