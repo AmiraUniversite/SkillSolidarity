@@ -12,12 +12,12 @@ $user_id = $_SESSION['user_id'];
 
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'Skillsolidarity';
+$dbname = 'Sitee';
 $user = 'postgres';
-$password = 'mfp98x';
-$port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
-
+$password = 'amira';
+$port = '5432'; // default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
+
 
 // Fonction pour se connecter à la base de données
 function connectDb() {

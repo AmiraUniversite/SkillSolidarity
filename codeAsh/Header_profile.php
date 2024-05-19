@@ -19,7 +19,7 @@
         <a href="./Publier_annonce.php">Demander</a>
     </div>
     <div class="right-links">
-        <button>Profile</button>
+        <button>Profil</button>
     </div>
 </header>
 

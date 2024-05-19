@@ -1,15 +1,15 @@
 <?php
 session_start(); // Démarrer la session
- 
+
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$dbname = 'Skillsolidarity';
+$dbname = 'Sitee';
 $user = 'postgres';
-$password = 'mfp98x';
-$port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
+$password = 'amira';
+$port = '5432'; // default port for PostgreSQL, change if different
+$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
-$conn_str = "host=$host port=$port dbname=$dbname user=$user password=$password";
-$conn = pg_connect($conn_str);
+$conn = pg_connect($connection_string);
 
 if (!$conn) {
     // Afficher un message si la connexion échoue
@@ -29,11 +29,15 @@ if (!$conn) {
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
+            flex: 1;
         }
         h1 {
             text-align: center;
@@ -116,12 +120,15 @@ if (!$conn) {
         .reserve-button:hover {
             background-color: #e68900;
         }
+        .no-service {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <?php include 'Header_profile.php';?>
     <div class="container">
-        <h1>Résultat de recherche</h1>
+        <h1>Résultats de recherche</h1>
         <p class="filter">Veuillez choisir parmi les catégories suivantes:</p>
         <form method="POST" action="">
             <ul class="options">
@@ -135,37 +142,40 @@ if (!$conn) {
         </form>
         <div class="services-container">
             <?php
-            if (isset($_POST['categorie'])) {
+            if (!isset($_POST['categorie'])) {
+                $categorie = 'JARDINAGE';
+            } else {
                 $categorie = $_POST['categorie'];
-                $query = 'SELECT "dateservice", "nomservice", "description_optionnel_", "dureeservice" FROM public."Service" WHERE upper("categorie") = upper($1)';
-                $result = pg_query_params($conn, $query, array($categorie));
-                if ($result) {
-                    while ($row = pg_fetch_assoc($result)) {
-                        $date_service = new DateTime($row['dateservice']);
-                        $image_url = '';
-                        switch (strtoupper($categorie)) {
-                            case 'PLOMBERIE':
-                                $image_url = 'images/plomberie.jpg';
-                                break;
-                            case 'JARDINAGE':
-                                $image_url = 'images/jardinage.jpg';
-                                break;
-                            case 'MENAGE':
-                                $image_url = 'images/ménage.jpg';
-                                break;
-                            case 'PEINTURE':
-                                $image_url = 'images/peinture.jpg';
-                                break;
-                            case 'MECANIQUE':
-                                $image_url = 'images/mécanique.jpg';
-                                break;
-                            case 'DEMENAGEMENT':
-                                $image_url = 'images/demenagement.jpg';
-                                break;
-                            default:
-                                $image_url = 'images/no_reservation.jpg';
-                                break;
-                        }
+            }
+            $query = 'SELECT "dateservice", "nomservice", "description_optionnel_", "dureeservice" FROM public."Service" WHERE upper("categorie") = upper($1)';
+            $result = pg_query_params($conn, $query, array($categorie));
+            if ($result && pg_num_rows($result) > 0) {
+                while ($row = pg_fetch_assoc($result)) {
+                    $date_service = new DateTime($row['dateservice']);
+                    $image_url = '';
+                    switch (strtoupper($categorie)) {
+                        case 'PLOMBERIE':
+                            $image_url = 'images/plomberie.jpg';
+                            break;
+                        case 'JARDINAGE':
+                            $image_url = 'images/jardinage.jpg';
+                            break;
+                        case 'MENAGE':
+                            $image_url = 'images/menage.jpg';
+                            break;
+                        case 'PEINTURE':
+                            $image_url = 'images/peinture.jpg';
+                            break;
+                        case 'MECANIQUE':
+                            $image_url = 'images/mecanique.jpg';
+                            break;
+                        case 'DEMENAGEMENT':
+                            $image_url = 'images/demenagement.jpg';
+                            break;
+                        default:
+                            $image_url = 'images/no_reservation.jpg';
+                            break;
+                    }
             ?>
             <div class="service-card">
                 <img src="<?php echo $image_url; ?>" alt="<?php echo htmlspecialchars($row['nomservice']); ?>" class="service-image">
@@ -182,13 +192,16 @@ if (!$conn) {
                 </div>
             </div>
             <?php
-                    }
-                } else {
-                    echo '<p>Il n\'existe pas d\'annonces correspondant à votre demande.</p>';
                 }
+            } else {
+                echo '<div class="no-service">';
+                echo '<img src="images/no_reservation.jpg" alt="No Service">';
+                echo '<p>Il n\'existe pas d\'annonce correspondant à votre demande.</p>';
+                echo '</div>';
             }
             ?>
         </div>
     </div>
+    <?php include 'Footer_mode_connecte.html'; ?>
 </body>
 </html>
