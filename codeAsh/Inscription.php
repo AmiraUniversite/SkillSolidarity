@@ -34,9 +34,9 @@
 session_start(); // Démarrer la session
 
 $host = 'localhost';
-$db = 'nom_BD'; // Nom de votre base de données
+$db = 'Skillsolidarity'; // Nom de votre base de données
 $user = 'postgres'; // Nom d'utilisateur de la base de données
-$pass = 'MDP'; //Mot de passe
+$pass = 'mfp98x'; //Mot de passe
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
