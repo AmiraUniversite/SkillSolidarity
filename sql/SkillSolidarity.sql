@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS "Utilisateur" (
 CREATE TABLE IF NOT EXISTS "Service" (
     IDService VARCHAR(50) PRIMARY KEY,
     NomService VARCHAR(50) NOT NULL CHECK (NomService ~ '^[A-Za-z ]+$'),
+    NiveauService VARCHAR(50) NOT NULL CHECK (upper(Categorie) IN ('DEBUTANT','INTERMEDIARE','EXPERT')),
     Description_optionnel_ VARCHAR(150),
     Categorie VARCHAR(50) NOT NULL CHECK (upper(Categorie) IN ('JARDINAGE', 'PLOMBERIE', 'MENAGE', 'PEINTURE', 'MECANIQUE', 'DEMENAGEMENT')),
     DateService TIMESTAMP NOT NULL,
