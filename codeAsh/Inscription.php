@@ -16,9 +16,9 @@
     <h3 class="information-title">Veuillez entrer vos informations</h3>
     <form class="signup-form" id="personal-info-form" action="traitement_inscription.php" method="POST">
       <input type="hidden" name="step" value="2">
-      <input name="nom_utilisateur" type="text" pattern="[A-Za-z]+" placeholder="Nom d'utilisateur" required>
-      <input name="mail" type="text" pattern="[A-Za-z]+" placeholder="Adresse mail" required>
-      <input name="mot_de_passe" type="text" placeholder="Mot de passe" required>
+      <input name="nom_utilisateur" type="text" placeholder="Nom d'utilisateur" required>
+      <input name="mail" type="email" placeholder="Adresse mail" required>
+      <input name="mot_de_passe" type="password" placeholder="Mot de passe" required>
       <button type="submit" name="submit-registration">Créer un compte</button>
     </form> 
   </div>
@@ -30,13 +30,14 @@
 </html>
 
 
+
 <?php
 session_start(); // Démarrer la session
 
 $host = 'localhost';
 $db = 'nom_BD';
 $user = 'postgres';
-$pass = 'MDP'; // Remplacez par votre mot de passe
+$pass = 'MDP';
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
