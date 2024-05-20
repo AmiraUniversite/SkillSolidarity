@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $dateService = $date . ' ' . $heure . ':00';
 
-    $sql = "INSERT INTO public.\"Service\" (IDService, NomService, NiveauService, Description_optionnel_, Categorie, DateService, DureeService) VALUES ('15', '$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
+    $sql = "INSERT INTO public.\"Service\" (idservice, nomservice, niveauservice, description_optionnel_,categorie,dateService,dureeService) VALUES ('$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
     $result = pg_query($conn, $sql);
     if ($result) {
         // Affichage d'un message en cas de succès
