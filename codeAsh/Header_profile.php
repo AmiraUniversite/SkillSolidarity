@@ -18,7 +18,7 @@
     </div>
     <div class="right-links">
         <button>Profil</button>
-        <!-- Ajouter le bouton de déconnexion -->
+        
         <form action="logout.php" method="POST" style="display:inline;">
             <button type="submit">Déconnexion</button>
             <a href="index.php">Déconnexion</a>
