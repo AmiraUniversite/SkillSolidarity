@@ -7,6 +7,9 @@ CREATE TABLE IF NOT EXISTS "Utilisateur" (
     DateInscriptionU DATE NOT NULL,
     RoleU VARCHAR(50) NOT NULL
 );
+CREATE SEQUENCE utilisateur_id_seq;
+ALTER TABLE public."Utilisateur"
+ALTER COLUMN "idutilisateur" SET DEFAULT nextval('utilisateur_id_seq');
 
 -- Table Service
 CREATE TABLE IF NOT EXISTS "Service" (
@@ -18,6 +21,9 @@ CREATE TABLE IF NOT EXISTS "Service" (
     DateService TIMESTAMP NOT NULL,
     DureeService TIME NOT NULL
 );
+CREATE SEQUENCE service_id_seq;
+ALTER TABLE public."Service"
+ALTER COLUMN "idservice" SET DEFAULT nextval('service_id_seq');
 
 -- Table Avis
 CREATE TABLE IF NOT EXISTS "Avis" (
