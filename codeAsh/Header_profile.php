@@ -21,7 +21,7 @@
         <!-- Ajouter le bouton de déconnexion -->
         <form action="logout.php" method="POST" style="display:inline;">
             <button type="submit">Déconnexion</button>
-            <a href="page_de_redirection.html">Déconnexion</a>
+            <a href="index.php">Déconnexion</a>
         </form>
     </div>
 </header>
