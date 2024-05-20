@@ -45,7 +45,6 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <h1 style="font-size: 20px;">Skill Solidarity</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Serach Start ***** -->
@@ -211,57 +210,54 @@
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   
-                Location de vélos et de pousse-pousse.
+                Quels types de services puis-je échanger sur Skillsolidarity ?
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  Réservez rapidement votre véhicule de qualité pour une heure ou toute la journée !</div>
+                Vous pouvez échanger une variété de services tels que l'aide aux devoirs, les réparations ménagères, le jardinage, la garde d'enfants, l'assistance informatique, et bien plus encore. L'important est de partager vos compétences et de bénéficier de celles des autres membres. !</div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                 Visite guidée de la campagne.
+                Comment puis-je être sûr de la qualité des services offerts ?
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                 Vivez la véritable expérience lucquoise en visitant les banlieues à vélo ! </div>
+                Skillsolidarity dispose d'un système de notation et de commentaires permettant aux membres de donner leur avis sur les services reçus. Cela vous aide à choisir des prestataires de confiance en fonction des évaluations et des expériences des autres utilisateurs. </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Services Vélo & Chauffeur : Votre solution tout-en-un
+                Comment puis-je suivre l'historique de mes échanges sur Skillsolidarity ?
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  Vous avez besoin non seulement d'un vélo mais aussi d'un chauffeur ? Alors vous avez trouvé le bon endroit !                </div>
+                Vous pouvez suivre l'historique de vos échanges en accédant à votre profil, où vous trouverez une section dédiée à vos activités passées. Cela inclut les services que vous avez offerts, ceux que vous avez reçus, ainsi que les évaluations et commentaires associés.               </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingFour">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Des solutions complètes de vélo et de chauffeur vous attendent !
+                Comment fonctionne le système de notation sur Skillsolidarity ?
                 </button>
               </h2>
               <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  Avez-vous besoin non seulement d'un vélo mais aussi d'un chauffeur ? Alors vous êtes au bon endroit !                </div>
+                Après chaque échange de services, les membres sont invités à évaluer leur expérience en donnant une note et en laissant un commentaire. Ces évaluations aident les autres membres à choisir des prestataires fiables et à maintenir une qualité de service élevée au sein de la communauté.              </div>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-5 align-self-center">
           <div class="section-heading">
-            <h6>À propos de nous</h6>
-            <h2>Liste des services</h2>
-            <p>Vivez l'essence de Lucca avec nos services exceptionnels !
-               Réservez rapidement un véhicule de qualité, que ce soit pour une heure ou une journée complète,
-                et explorez les charmantes banlieues à vélo, vous plongeant dans l'authentique atmosphère lucquoise. Besoin de plus qu'un simple vélo ? Nous avons ce qu'il vous faut avec nos forfaits vélo et chauffeur, garantissant un voyage sans faille et agréable à travers le cœur de la Toscane.
-               Vous avez trouvé l'endroit parfait pour élever votre aventure à Lucca !</p>
+            <h6>SkillSolidarity</h6>
+            <h2>QUI SOMMES-NOUS ?</h2>
+            <p>Bienvenue chez Skillsolidarity ! Nous sommes un réseau local d'entraide et d'échange de services gratuits, dédié à renforcer les liens communautaires et à promouvoir la solidarité entre voisins. Chez Skillsolidarity, nous croyons fermement que chacun a des compétences uniques à offrir et que l'échange de services peut transformer nos vies et nos communautés. Que vous ayez besoin d'un coup de main pour des petits travaux, de conseils en jardinage, de soutien scolaire ou d'aide pour des tâches administratives, notre plateforme est là pour vous mettre en relation avec des personnes prêtes à partager leur savoir-faire et leur temps. Ensemble, nous construisons une communauté plus forte, plus solidaire et plus résiliente. !</p>
             <!-- <div class="main-button">
               <a href="#">Discover More</a>
             </div>  -->
@@ -283,7 +279,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">adepte de l'entraide</span>
-                <h4>Jean P.</h4>
+                <h4>Achraf B.</h4>
               </div>
             </div>
             <div class="item">
@@ -291,7 +287,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">résidente engagée</span>
-                <h4>Marie L</h4>
+                <h4>Marie B</h4>
               </div>
             </div>
             <div class="item">
@@ -299,7 +295,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">passionné de bricolage</span>
-                <h4>Antoine M</h4>
+                <h4>Amira L</h4>
               </div>
             </div>
             <div class="item">
@@ -307,7 +303,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">utilisatrice satisfaite</span>
-                <h4>Sophie D</h4>
+                <h4>Ayman T</h4>
               </div>
             </div>
             <div class="item">
@@ -315,7 +311,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">nouveau membre</span>
-                <h4>Paul R</h4>
+                <h4>Valérian P</h4>
               </div>
             </div>
             <div class="item">
@@ -323,7 +319,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">fervente supportrice</span>
-                <h4>Clara V</h4>
+                <h4>André A</h4>
               </div>
             </div>
             <div class="item">
@@ -331,7 +327,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">amateur de jardinage</span>
-                <h4>Lucas B</h4>
+                <h4>Mostapha M</h4>
               </div>
             </div>
             <div class="item">
@@ -339,7 +335,7 @@
               <div class="author">
                 <img src="" alt="">
                 <span class="category">bénévole enthousiaste</span>
-                <h4>Isabelle T</h4>
+                <h4>Patrice T</h4>
               </div>
             </div>
           </div>
@@ -379,17 +375,17 @@
               <div class="row">
                 <div class="col-lg-12">
                   <fieldset>
-                    <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                    <input type="name" name="name" id="name" placeholder="Votre nom..." autocomplete="on" required>
                   </fieldset>
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
-                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Votre email..." required="">
                   </fieldset>
                 </div>
                 <div class="col-lg-12">
                   <fieldset>
-                    <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                    <textarea name="message" id="message" placeholder="Votre message..."></textarea>
                   </fieldset>
                 </div>
                 <div class="col-lg-12">
@@ -417,9 +413,9 @@
 // PostgreSQL database connection parameters
 $host = "localhost"; // e.g., localhost
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "Sitee";
+$dbname = "Skillsolidarity";
 $user = "postgres";
-$password = "amira";
+$password = "123";
 
 // Connect to PostgreSQL database
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
