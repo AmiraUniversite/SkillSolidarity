@@ -1,31 +1,3 @@
-<?php
-// db.php
-$host = 'localhost';
-$dbname = 'nom_BD';
-$user = 'postgres';
-$password = 'MDP';
-$port = '5432'; // port par défaut pour PostgreSQL, à changer si nécessaire
-
-$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
-
-// Fonction pour se connecter à la base de données
-function connectDb() {
-    global $connection_string;
-    $conn = pg_connect($connection_string);
-    if ($conn) {
-        return $conn;
-    } else {
-        echo "Erreur de connexion à la base de données PostgreSQL.\n";
-        return false;
-    }
-}
-
-// Fonction pour se déconnecter de la base de données
-function disconnectDb($conn) {
-    pg_close($conn);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
