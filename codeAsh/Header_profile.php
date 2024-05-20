@@ -27,30 +27,5 @@
 </body>
 </html>
 
-<?php
-session_start();
-include 'db.php';
-
-// Se connecter à la base de données
-$conn = connectDb();
-
-if ($conn) {
-    // Vos opérations de déconnexion spécifiques à la base de données, si nécessaires
-    // ...
-
-    // Fermer la connexion à la base de données
-    disconnectDb($conn);
-}
-
-// Désactiver toutes les variables de session
-session_unset();
-
-// Détruire la session
-session_destroy();
-
-// Rediriger l'utilisateur vers la page d'accueil
-header("Location: Page_Acceuil/index.php");
-exit;
-?>
 
 
