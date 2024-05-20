@@ -11,7 +11,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="images/logo.jpg" alt="Logo">
+        <img src="images/logo.svg" alt="Logo">
     </div>
     <div class="nav-links">
         <a href="./Page_Acceuil/index.php">Accueil</a>
