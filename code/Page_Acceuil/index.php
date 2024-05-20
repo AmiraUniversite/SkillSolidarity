@@ -417,9 +417,9 @@
 // PostgreSQL database connection parameters
 $host = "localhost"; // e.g., localhost
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "SkillSolidarity";
+$dbname = "Sitee";
 $user = "postgres";
-$password = "mfp98x";
+$password = "amira";
 
 // Connect to PostgreSQL database
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
