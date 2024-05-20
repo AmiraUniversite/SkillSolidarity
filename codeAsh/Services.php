@@ -103,7 +103,6 @@ if (!$conn) {
             flex-direction: column;
             gap: 10px;
         }
-        .details-button,
         .reserve-button {
             display: inline-block;
             background-color: #ff9800;
@@ -116,7 +115,6 @@ if (!$conn) {
             text-align: center;
             text-decoration: none;
         }
-        .details-button:hover,
         .reserve-button:hover {
             background-color: #e68900;
         }
@@ -187,7 +185,6 @@ if (!$conn) {
                     <p><strong>Description:</strong> <?php echo htmlspecialchars($row['description_optionnel_']); ?></p>
                 </div>
                 <div class="buttons-container">
-                    <button class="details-button">Détails</button>
                     <a href="test.php?categorie=<?php echo urlencode($categorie); ?>&nomservice=<?php echo urlencode($row['nomservice']); ?>&dateservice=<?php echo urlencode($date_service->format('Y-m-d H:i:s')); ?>&dureeservice=<?php echo urlencode($row['dureeservice']); ?>&description=<?php echo urlencode($row['description_optionnel_']); ?>" class="reserve-button">Réserver</a>
                 </div>
             </div>
