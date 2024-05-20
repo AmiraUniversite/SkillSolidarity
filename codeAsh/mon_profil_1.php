@@ -64,7 +64,7 @@ if ($conn) {
 
     // Définir la requête pour récupérer les réservations utilisateur et les avis
     $reservations_query = "
-    SELECT s.*, o.\"dateservice\" as \"date_service\", a.note, a.commentaire
+    SELECT s.*, o.\"dateservice\" as \"date_service\", a.note, a.commentaire, s.categorie
     FROM public.\"Service\" s
     JOIN public.\"Offrir\" o ON s.\"idservice\" = o.\"idservice\"
     LEFT JOIN public.\"Avis\" a ON s.\"idservice\" = a.\"idservice\" AND a.\"idutilisateur\" = '$user_id'
@@ -128,6 +128,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'description' => htmlspecialchars($_POST['description'])
         ];
     }
+}
+
+// Fonction pour obtenir l'image correspondant à la catégorie
+function getCategoryImage($categorie) {
+    $images = [
+        'JARDINAGE' => 'images/jardinage.jpg',
+        'MECANIQUE' => 'images/mecanique.jpg',
+        'MENAGE' => 'images/menage.jpg',
+        'PEINTURE' => 'images/peinture.jpg',
+        'PLOMBERIE' => 'images/plomberie.jpg'
+        'DEMENAGEMENT' => 'images/demenagement.jpg'
+    ];
+    return isset($images[$categorie]) ? $images[$categorie] : 'images/default.jpg';
 }
 ?>
 <!DOCTYPE html>
@@ -273,7 +286,7 @@ footer a:hover {
     <?php if ($new_reservation): ?>
       <h2>Nouvelle réservation</h2>
       <div class="reservation-card">
-        <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+        <img src="<?php echo getCategoryImage($new_reservation['categorie']); ?>" alt="Service Image" class="reservation-image">
         <div class="reservation-details">
           <h3><?php echo htmlspecialchars($new_reservation['nomservice']); ?></h3>
           <p><strong><?php echo date('l, d M Y', strtotime($new_reservation['dateservice'])); ?></strong></p>
@@ -291,7 +304,7 @@ footer a:hover {
         <h2>Services à venir</h2>
         <?php foreach ($upcoming_reservations as $reservation): ?>
           <div class="reservation-card">
-            <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+            <img src="<?php echo getCategoryImage($reservation['categorie']); ?>" alt="Service Image" class="reservation-image">
             <div class="reservation-details">
               <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
               <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
@@ -312,7 +325,7 @@ footer a:hover {
         <h2>Services terminés</h2>
         <?php foreach ($past_reservations as $reservation): ?>
           <div class="reservation-card">
-            <img src="path/to/image.jpg" alt="Service Image" class="reservation-image">
+            <img src="<?php echo getCategoryImage($reservation['categorie']); ?>" alt="Service Image" class="reservation-image">
             <div class="reservation-details">
               <h3><?php echo htmlspecialchars($reservation['nomservice']); ?></h3>
               <p><strong><?php echo date('l, d M Y', strtotime($reservation['date_service'])); ?></strong></p>
