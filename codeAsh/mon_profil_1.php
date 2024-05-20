@@ -12,9 +12,9 @@ $user_id = $_SESSION['user_id'];
 
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'Sitee';
+$dbname = 'Skillsolidarity';
 $user = 'postgres';
-$password = 'amira';
+$password = '123';
 $port = '5432'; // default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
@@ -137,7 +137,7 @@ function getCategoryImage($categorie) {
         'MECANIQUE' => 'images/mecanique.jpg',
         'MENAGE' => 'images/menage.jpg',
         'PEINTURE' => 'images/peinture.jpg',
-        'PLOMBERIE' => 'images/plomberie.jpg'
+        'PLOMBERIE' => 'images/plomberie.jpg',
         'DEMENAGEMENT' => 'images/demenagement.jpg'
     ];
     return isset($images[$categorie]) ? $images[$categorie] : 'images/default.jpg';

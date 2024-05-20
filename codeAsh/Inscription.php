@@ -14,7 +14,7 @@
   <div id="personal-info-section" class="signup-container">
     <h1 class="signup-title">Inscription</h1>
     <h3 class="information-title">Veuillez entrer vos informations</h3>
-    <form class="signup-form" id="personal-info-form" action="Page_connexion.php" method="POST">
+    <form class="signup-form" id="personal-info-form" action="" method="POST">
       <input type="hidden" name="step" value="2">
       <input name="nom_utilisateur" type="text" placeholder="Nom d'utilisateur" required>
       <input name="mail" type="email" placeholder="Adresse mail" required>
@@ -36,7 +36,7 @@ session_start(); // Démarrer la session
 $host = 'localhost';
 $db = 'Skillsolidarity'; // Nom de votre base de données
 $user = 'postgres'; // Nom d'utilisateur de la base de données
-$pass = 'mfp98x'; //Mot de passe
+$pass = '123'; //Mot de passe
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
@@ -51,16 +51,23 @@ if (!$conn) {
 // Vérification des données POST
 if(isset($_POST['nom_utilisateur']) && isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
     // Récupération des données du formulaire
-    $nom = pg_escape_string($_POST['nom_utilisateur']);
-    $mail = pg_escape_string($_POST['mail']);
-    $password = pg_escape_string($_POST['mot_de_passe']);
+    $nom = $_POST['nom_utilisateur'];
+    $mail = $_POST['mail'];
+    $password = $_POST['mot_de_passe'];
 
-    // Requête SQL pour insérer les données dans la table
-    $sql = "INSERT INTO public.\"Utilisateur\" (useru, emailu, motdepasseu) VALUES ('$nom', '$mail', '$password')";
+    // Hachage du mot de passe
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Exécution de la requête
-    $result = pg_query($conn, $sql);
+    // Requête SQL préparée pour insérer les données dans la table
+    $sql = 'INSERT INTO public."Utilisateur" ( UserU, EmailU, MotDePasseU, DateInscriptionU, RoleU) VALUES($1, $2, $3, NOW(), $4)';
 
+    // Préparation de la requête
+    $result = pg_prepare($conn, "my_query", $sql);
+    $role = 'user';
+    // Exécution de la requête avec les valeurs
+    $result = pg_execute($conn, "my_query", array($nom, $mail, $password, $role));
+ 
+  
     if ($result) {
         // Redirection vers une autre page en cas de succès    
         header("Location: Page_connexion.php");
@@ -76,7 +83,3 @@ if(isset($_POST['nom_utilisateur']) && isset($_POST['mail']) && isset($_POST['mo
 // Fermeture de la connexion à la base de données
 pg_close($conn);
 ?>
-
-
-
-
