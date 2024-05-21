@@ -1,9 +1,9 @@
 <?php
 session_start(); // Démarrer la session
 $host = 'localhost';
-$db = 'Skillsolidarity'; // Nom de votre base de données
+$db = 'Ss'; // Nom de votre base de données
 $user = 'postgres'; // Nom d'utilisateur de la base de données
-$pass = '123'; // Mot de passe
+$pass = 'amira'; // Mot de passe
 $port = '5432';// default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$db} user={$user} password={$pass}";
 

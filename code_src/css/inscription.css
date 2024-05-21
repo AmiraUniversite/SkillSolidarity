@@ -87,9 +87,9 @@ footer {
 
 .image-gauche {
   position: absolute; /* Relative to main-content */
-  left: 150px;
+  left: 80px;
   top: 0;
-  width: 600px; /* Adjust size as needed */
+  width: 500px; /* Adjust size as needed */
   height: auto;
   padding: 60px; /* Reduce padding */
 }

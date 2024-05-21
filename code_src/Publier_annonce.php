@@ -66,9 +66,9 @@
 session_start(); // Démarrer la session
 $host = "localhost";
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "Skillsolidarity";
+$dbname = "Ss";
 $user = "postgres";
-$password = "123";
+$password = "amira";
 
 // Connect to PostgreSQL database
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");

@@ -3,9 +3,9 @@ session_start(); // Démarrer la session
 
 // Connexion à la base de données
 $host = 'localhost';
-$db = 'Skillsolidarity';
+$db = 'Ss';
 $user = 'postgres';
-$pass = '123'; // Remplacez par votre mot de passe
+$pass = 'amira'; // Remplacez par votre mot de passe
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 $conn = pg_connect($conn_str);

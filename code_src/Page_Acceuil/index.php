@@ -412,9 +412,9 @@
   <?php
 // PostgreSQL database connection parameters
 $host = 'localhost';
-$db = 'Skillsolidarity'; // Nom de votre base de données
+$db = 'Ss'; // Nom de votre base de données
 $user = 'postgres'; // Nom d'utilisateur de la base de données
-$pass = '123'; // Mot de passe
+$pass = 'amira'; // Mot de passe
 $port = '5432';
 
 // Connect to PostgreSQL database
