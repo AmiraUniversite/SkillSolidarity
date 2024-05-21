@@ -1,11 +1,11 @@
 <?php
 session_start(); // Démarrer la session
 $host = 'localhost';
-$dbname = 'Skillsolidarity';
-$user = 'postgres';
-$password = '123';
-$port = '5432'; // default port for PostgreSQL, change if different
-$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
+$db = 'nom_BD'; // Nom de votre base de données
+$user = 'postgres'; // Nom d'utilisateur de la base de données
+$pass = 'MDP'; // Mot de passe
+$port = '5432';// default port for PostgreSQL, change if different
+$connection_string = "host={$host} port={$port} dbname={$db} user={$user} password={$pass}";
 
 if (isset($_POST['connect'])) {
     $email = $_POST['email'];

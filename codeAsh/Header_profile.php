@@ -17,11 +17,11 @@
         <a href="./Publier_annonce.php">Demander</a>
     </div>
     <div class="right-links">
-        <button>Profil</button>
+        <button href="./mon_profil_1.php"> Profil</button>
         
-        <form action="logout.php" method="POST" style="display:inline;">
-            <button type="submit">Déconnexion</button>
-            <a href="index.php">Déconnexion</a>
+        <form action="./Page_Acceuil/index.php" method="POST" style="display:inline;">
+            <button href="./Page_Acceuil/index.php" type="submit">Déconnexion</button>
+            
         </form>
     </div>
 </header>

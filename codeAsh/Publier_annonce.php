@@ -48,9 +48,9 @@
 session_start(); // Démarrer la session
 $host = "localhost";
 $port = "5432"; // default PostgreSQL port is 5432
-$dbname = "Skillsolidarity";
+$dbname = "nom_BD";
 $user = "postgres";
-$password = "123";
+$password = "MDP";
 
 // Connect to PostgreSQL database
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $dateService = $date . ' ' . $heure . ':00';
 
-    $sql = "INSERT INTO public.\"Service\" (idservice, nomservice, niveauservice, description_optionnel_,categorie,dateService,dureeService) VALUES ('$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
+    $sql = "INSERT INTO public.\"Service\" ( nomservice, niveauservice, description_optionnel_,categorie,dateService,dureeService) VALUES ('$titre', '$expertise', '$description', '$categorie', '$dateService', '$duree')";
     $result = pg_query($conn, $sql);
     if ($result) {
         // Affichage d'un message en cas de succès

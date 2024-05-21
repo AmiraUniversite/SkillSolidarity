@@ -2,12 +2,12 @@
 session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
-$host = 'localhost';
-$dbname = 'Skillsolidarity';
-$user = 'postgres';
-$password = '123';
-$port = '5432'; // default port for PostgreSQL, change if different
-$connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
+$host = "localhost";
+$port = "5432"; // default PostgreSQL port is 5432
+$db = "nom_BD";
+$user = "postgres";
+$pass = "MDP"; // default port for PostgreSQL, change if different
+$connection_string = "host={$host} port={$port} dbname={$db} user={$user} password={$pass}";
 
 $conn = pg_connect($connection_string);
 
@@ -185,7 +185,7 @@ if (!$conn) {
                     <p><strong>Description:</strong> <?php echo htmlspecialchars($row['description_optionnel_']); ?></p>
                 </div>
                 <div class="buttons-container">
-                    <a href="test.php?categorie=<?php echo urlencode($categorie); ?>&nomservice=<?php echo urlencode($row['nomservice']); ?>&dateservice=<?php echo urlencode($date_service->format('Y-m-d H:i:s')); ?>&dureeservice=<?php echo urlencode($row['dureeservice']); ?>&description=<?php echo urlencode($row['description_optionnel_']); ?>" class="reserve-button">Réserver</a>
+                    <a href="confirmation_reservation.php?categorie=<?php echo urlencode($categorie); ?>&nomservice=<?php echo urlencode($row['nomservice']); ?>&dateservice=<?php echo urlencode($date_service->format('Y-m-d H:i:s')); ?>&dureeservice=<?php echo urlencode($row['dureeservice']); ?>&description=<?php echo urlencode($row['description_optionnel_']); ?>" class="reserve-button">Réserver</a>
                 </div>
             </div>
             <?php

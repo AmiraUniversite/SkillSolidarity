@@ -59,7 +59,7 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                       <li class="scroll-to-section"><a href="#top" class="active">Acceuil</a></li>
-                      <li class="scroll-to-section"><a href="#Rechercher">Rechercher</a></li>
+                      <li class="scroll-to-section"><a href="../Services.php">Rechercher</a></li>
                       <li class="scroll-to-section"><a href="../Publier_annonce.php">Demander</a></li>
                       <li class="scroll-to-section"><a href="../Page_connexion.php">connexion</a></li>
                       <li class="scroll-to-section"><a href="../Inscription.php" class="active">inscrivez-vous!</a></li>
@@ -411,14 +411,14 @@
 
   <?php
 // PostgreSQL database connection parameters
-$host = "localhost"; // e.g., localhost
-$port = "5432"; // default PostgreSQL port is 5432
-$dbname = "Skillsolidarity";
-$user = "postgres";
-$password = "123";
+$host = 'localhost';
+$db = 'nom_BD'; // Nom de votre base de données
+$user = 'postgres'; // Nom d'utilisateur de la base de données
+$pass = 'MDP'; // Mot de passe
+$port = '5432';
 
 // Connect to PostgreSQL database
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+$conn = pg_connect("host=$host port=$port dbname=$db user=$user password=$pass");
 if (!$conn) {
     die("Error: Unable to connect to database");
 }

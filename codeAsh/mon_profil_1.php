@@ -12,9 +12,9 @@ $user_id = $_SESSION['user_id'];
 
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'Skillsolidarity';
+$dbname = 'nom_BD';
 $user = 'postgres';
-$password = '123';
+$password = 'MDP';
 $port = '5432'; // default port for PostgreSQL, change if different
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
 
@@ -279,7 +279,7 @@ footer a:hover {
         ?>
       </div>
     </div>
-    <button class="button">Modifier mon profil</button>
+    
   </div>
   <div class="reservations-title">Mes réservations</div>
   <div class="reservations-container">

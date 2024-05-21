@@ -3,7 +3,7 @@ session_start(); // Démarrer la session
 
 // Connexion à la base de données
 $host = 'localhost';
-$db = 'nom_BD';
+$db = 'skis';
 $user = 'postgres';
 $pass = 'MDP'; // Remplacez par votre mot de passe
 $port = '5432';
@@ -33,7 +33,7 @@ if (isset($_GET['categorie']) && isset($_GET['nomservice']) && isset($_GET['date
             $image_url = 'images/jardinage.jpg';
             break;
         case 'MENAGE':
-            $image_url = 'images/ménage.jpg';
+            $image_url = 'images/menage.jpg';
             break;
         case 'PEINTURE':
             $image_url = 'images/peinture.jpg';
