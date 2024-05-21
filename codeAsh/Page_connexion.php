@@ -59,7 +59,7 @@ if (isset($_POST['connect'])) {
     <link rel="stylesheet" href="css/Page_connexion.css">
 </head>
 <body>
-<?php include 'Header_profile.php'; ?>
+<?php include 'Header_mode_non_connecte.php'; ?>
 
     <div class="login-wrapper">
         <div class="login-image">

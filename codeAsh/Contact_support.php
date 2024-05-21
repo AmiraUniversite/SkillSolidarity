@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<?php include 'Header_profile.php'; ?>
     <div class="container">
         <h1>Nous contacter</h1>
         <form action="#" method="post">
@@ -29,11 +30,11 @@
 
 <?php
 // Configuration de la base de données
-$host = "nom_de l'host";
-$port = "5432";
-$dbname = "nom_de_votre_base_de_données";
-$user = "votre_nom_utilisateur";
-$password = "votre_mot_de_passe";
+$host = "localhost";
+$port = "5433";
+$dbname = "skis";
+$user = "postgres";
+$password = "016979B558@y";
 
 // Connexion à la base de données
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
