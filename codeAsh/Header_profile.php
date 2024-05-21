@@ -17,16 +17,13 @@
         <a href="./Publier_annonce.php">Demander</a>
     </div>
     <div class="right-links">
-        <button href="./mon_profil_1.php"> Profil</button>
+        <button onclick="location.href='./mon_profil_1.php'">Profil</button>
         
         <form action="./Page_Acceuil/index.php" method="POST" style="display:inline;">
-            <button href="./Page_Acceuil/index.php" type="submit">Déconnexion</button>
-            
+            <input type="hidden" name="logout" value="1">
+            <button type="submit">Déconnexion</button>
         </form>
     </div>
 </header>
 </body>
 </html>
-
-
-

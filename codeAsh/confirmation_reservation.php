@@ -5,8 +5,8 @@ session_start(); // Démarrer la session
 $host = 'localhost';
 $db = 'skis';
 $user = 'postgres';
-$pass = 'MDP'; // Remplacez par votre mot de passe
-$port = '5432';
+$pass = '016979B558@y'; // Remplacez par votre mot de passe
+$port = '5433';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 $conn = pg_connect($conn_str);
 
