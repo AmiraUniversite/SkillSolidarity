@@ -9,6 +9,7 @@ body, html {
 }
 
 .header-container {
+  margin-top: 0; /* Supprime la marge supérieure */
   width: 100%;
   padding: 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -81,10 +82,12 @@ body, html {
 
 footer {
   margin-top: 50px; /* Ajout de la marge supérieure */
+  height: 100px;
 }
 
 .image-gauche {
   position: fixed; /* Position fixe pour rester à gauche de l'écran même en faisant défiler */
-  padding-left: 300px;
+  padding-left: 400px;
   padding-top: 120px
 }
+
