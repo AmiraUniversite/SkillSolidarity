@@ -58,7 +58,7 @@
                     <!-- ***** Serach Start ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li class="scroll-to-section"><a href="#top" class="active">Acceuil</a></li>
+                      <li class="scroll-to-section"><a href="#top" class="active">Accueil</a></li>
                       <li class="scroll-to-section"><a href="../Services.php">Rechercher</a></li>
                       <li class="scroll-to-section"><a href="../Publier_annonce.php">Demander</a></li>
                       <li class="scroll-to-section"><a href="../Page_connexion.php">connexion</a></li>
