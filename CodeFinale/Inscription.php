@@ -3,9 +3,9 @@ session_start(); // Démarrer la session
 
 // Connexion à la base de données PostgreSQL
 $host = 'localhost';
-$db = 'nom_BD'; // Nom de votre base de données
+$db = 'Skillsolidarity'; // Nom de votre base de données
 $user = 'postgres'; // Nom d'utilisateur de la base de données
-$pass = 'MDP'; // Mot de passe
+$pass = '123'; // Mot de passe
 $port = '5432';
 $conn_str = "host=$host port=$port dbname=$db user=$user password=$pass";
 
@@ -36,8 +36,6 @@ if(isset($_POST['nom_utilisateur']) && isset($_POST['mail']) && isset($_POST['mo
         // En cas d'échec, affichage d'un message d'erreur
         echo "Erreur lors de l'inscription : " . pg_last_error($conn);
     }
-} else {
-    echo "Tous les champs sont requis.";
 }
 
 // Fermeture de la connexion à la base de données

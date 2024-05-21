@@ -86,8 +86,11 @@ footer {
 }
 
 .image-gauche {
-  position: fixed; /* Position fixe pour rester à gauche de l'écran même en faisant défiler */
-  padding-left: 400px;
-  padding-top: 120px
+  position: absolute; /* Relative to main-content */
+  left: 150px;
+  top: 0;
+  width: 600px; /* Adjust size as needed */
+  height: auto;
+  padding: 60px; /* Reduce padding */
 }
 

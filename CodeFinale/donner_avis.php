@@ -17,7 +17,7 @@ $commentaire = $_POST['commentaire'];
 $host = 'localhost';
 $dbname = 'Skillsolidarity';
 $user = 'postgres';
-$password = 'mfp98x';
+$password = '123';
 $port = '5432'; // port par défaut pour PostgreSQL, à changer si différent
 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
